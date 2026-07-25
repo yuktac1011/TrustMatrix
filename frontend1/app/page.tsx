@@ -7,6 +7,9 @@ import IngestorTab from "@/components/views/IngestorTab";
 import BaselinesTab from "@/components/views/BaselinesTab";
 import MLSimulatorTab from "@/components/views/MLSimulatorTab";
 import CopilotTab from "@/components/views/CopilotTab";
+import NLPTopicTab from "@/components/views/NLPTopicTab";
+import BenchmarkTab from "@/components/views/BenchmarkTab";
+import SOARTab from "@/components/views/SOARTab";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -18,6 +21,9 @@ export default function Dashboard() {
       case "baselines": return <BaselinesTab />;
       case "simulator": return <MLSimulatorTab />;
       case "copilot": return <CopilotTab />;
+      case "nlp": return <NLPTopicTab />;
+      case "benchmark": return <BenchmarkTab />;
+      case "soar": return <SOARTab />;
       default: return <OverviewTab />;
     }
   };
@@ -27,7 +33,10 @@ export default function Dashboard() {
     ingestor: { title: "Log Ingestor", subtitle: "Simulate and push raw payloads to the ingestion pipeline" },
     baselines: { title: "User Baselines", subtitle: "Behavioral profile lookups and operational patterns" },
     simulator: { title: "ML Simulator", subtitle: "Behavior Parameter Simulation and AI evaluation" },
-    copilot: { title: "AI SOC Copilot", subtitle: "AI-driven threat analysis and incident resolution summaries" }
+    copilot: { title: "AI SOC Copilot", subtitle: "AI-driven threat analysis and incident resolution summaries" },
+    nlp: { title: "NLP Topic Engine", subtitle: "LDA semantic anomaly detection on document and file access patterns" },
+    benchmark: { title: "CERT Benchmark", subtitle: "True Detection Rate evaluation on CERT R6.2 insider threat dataset" },
+    soar: { title: "SOAR Playbooks", subtitle: "One-click Security Orchestration, Automation and Response actions" },
   };
 
   return (

@@ -1,4 +1,4 @@
-import { ShieldHalf, Activity, Server, Users, Cpu, Bot } from "lucide-react";
+import { ShieldHalf, Activity, Server, Users, Cpu, Bot, Brain, BarChart3, Shield } from "lucide-react";
 
 interface SidebarProps {
   activeTab: string;
@@ -12,6 +12,9 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
     { id: "baselines", label: "User Baselines", icon: Users },
     { id: "simulator", label: "ML Simulator", icon: Cpu },
     { id: "copilot", label: "AI SOC Copilot", icon: Bot },
+    { id: "nlp", label: "NLP Topic Engine", icon: Brain },
+    { id: "benchmark", label: "CERT Benchmark", icon: BarChart3 },
+    { id: "soar", label: "SOAR Playbooks", icon: Shield },
   ];
 
   return (

@@ -13,3 +13,6 @@ backend/app/features/graph_intelligence/__pycache__/
 backend/app/features/threat_simulator/__pycache__/
 backend/app/features/websocket_alerts/__pycache__/
 backend/app/features/shadow_accounts/__pycache__/
+
+
+*.pyc

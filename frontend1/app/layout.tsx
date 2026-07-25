@@ -15,8 +15,9 @@ export default function RootLayout({
     <html
       lang="en"
       className="dark h-full antialiased"
+      suppressHydrationWarning
     >
-      <body className="h-full flex flex-col bg-black text-zinc-100 overflow-hidden">{children}</body>
+      <body className="h-full flex flex-col bg-black text-zinc-100 overflow-hidden" suppressHydrationWarning>{children}</body>
     </html>
   );
 }
