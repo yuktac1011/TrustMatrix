@@ -1,0 +1,8 @@
+backend/venv
+
+backend/app/__pycache__
+backend/app/features/baseline_engine/__pycache__
+backend/app/features/log_ingestor/__pycache__
+backend/app/core/__pycache__
+backend/app/features/anomaly_detector/__pycache__
+backend/.env
