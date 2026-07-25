@@ -78,7 +78,7 @@ export default function OverviewTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="glass-panel p-6 rounded-2xl border-t-4 border-t-violet-500">
           <div className="flex justify-between items-start">
-            <span className="text-zinc-400 font-medium">Aggregated Risk Index</span>
+            <span className="text-zinc-600 dark:text-zinc-400 font-medium">Aggregated Risk Index</span>
             <Gauge className="text-violet-500 w-5 h-5" />
           </div>
           <div className="mt-4 flex items-baseline gap-2">
@@ -89,7 +89,7 @@ export default function OverviewTab() {
 
         <div className="glass-panel p-6 rounded-2xl border-t-4 border-t-fuchsia-500">
           <div className="flex justify-between items-start">
-            <span className="text-zinc-400 font-medium">Active Baselines</span>
+            <span className="text-zinc-600 dark:text-zinc-400 font-medium">Active Baselines</span>
             <Users className="text-fuchsia-500 w-5 h-5" />
           </div>
           <div className="mt-4 flex items-baseline gap-2">
@@ -101,7 +101,7 @@ export default function OverviewTab() {
         <div className="glass-panel p-6 rounded-2xl border-t-4 border-t-red-500 relative overflow-hidden">
           <div className="absolute inset-0 bg-red-500/5 animate-pulse"></div>
           <div className="relative flex justify-between items-start">
-            <span className="text-zinc-400 font-medium">Critical Anomalies</span>
+            <span className="text-zinc-600 dark:text-zinc-400 font-medium">Critical Anomalies</span>
             <AlertTriangle className="text-red-500 w-5 h-5" />
           </div>
           <div className="relative mt-4 flex items-baseline gap-2">
@@ -112,7 +112,7 @@ export default function OverviewTab() {
 
         <div className="glass-panel p-6 rounded-2xl border-t-4 border-t-cyan-500">
           <div className="flex justify-between items-start">
-            <span className="text-zinc-400 font-medium">Ingestion Telemetry</span>
+            <span className="text-zinc-600 dark:text-zinc-400 font-medium">Ingestion Telemetry</span>
             <Activity className="text-cyan-500 w-5 h-5" />
           </div>
           <div className="mt-4 flex items-baseline gap-2">
@@ -140,15 +140,15 @@ export default function OverviewTab() {
 
       {/* Alert Stream */}
       <div className="glass-panel rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-white/5 flex justify-between items-center">
+        <div className="p-6 border-b border-zinc-200 dark:border-white/5 flex justify-between items-center">
           <h3 className="text-lg font-semibold">High-Risk Behavioral Anomalies Stream</h3>
-          <button className="text-xs bg-white/5 hover:bg-white/10 px-3 py-1 rounded-full transition-colors">
+          <button className="text-xs bg-black/5 dark:bg-white/5 hover:bg-white/10 px-3 py-1 rounded-full transition-colors">
             Clear Stream
           </button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-white/5 text-zinc-400">
+            <thead className="bg-black/5 dark:bg-white/5 text-zinc-600 dark:text-zinc-400">
               <tr>
                 <th className="px-6 py-4 font-medium">Timestamp</th>
                 <th className="px-6 py-4 font-medium">Identity</th>
@@ -157,16 +157,16 @@ export default function OverviewTab() {
                 <th className="px-6 py-4 font-medium">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 text-zinc-400">2 mins ago</td>
+            <tbody className="divide-y divide-zinc-200 dark:divide-white/5">
+              <tr className="hover:bg-black/5 dark:bg-white/5 transition-colors">
+                <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">2 mins ago</td>
                 <td className="px-6 py-4 font-mono text-fuchsia-400">admin_user</td>
                 <td className="px-6 py-4"><span className="bg-zinc-800 px-2 py-1 rounded text-xs">T1078</span></td>
                 <td className="px-6 py-4"><span className="text-red-400 font-bold">84%</span></td>
                 <td className="px-6 py-4"><span className="bg-red-500/20 text-red-400 px-2 py-1 rounded-full text-xs border border-red-500/30">Investigating</span></td>
               </tr>
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 text-zinc-400">15 mins ago</td>
+              <tr className="hover:bg-black/5 dark:bg-white/5 transition-colors">
+                <td className="px-6 py-4 text-zinc-600 dark:text-zinc-400">15 mins ago</td>
                 <td className="px-6 py-4 font-mono text-cyan-400">svc_backup</td>
                 <td className="px-6 py-4"><span className="bg-zinc-800 px-2 py-1 rounded text-xs">T1048</span></td>
                 <td className="px-6 py-4"><span className="text-orange-400 font-bold">72%</span></td>
