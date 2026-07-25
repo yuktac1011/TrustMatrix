@@ -1,6 +1,7 @@
 # Web Framework & Server Concurrency
 fastapi==0.110.0
 uvicorn[standard]==0.28.0
+gunicorn==21.2.0
 pydantic==2.6.4
 pydantic-settings==2.2.1
 python-multipart==0.0.9
