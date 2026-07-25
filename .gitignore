@@ -1,15 +1,15 @@
 backend/venv
 
-backend/app/__pycache__
-backend/app/features/baseline_engine/__pycache__
-backend/app/features/log_ingestor/__pycache__
-backend/app/core/__pycache__
-backend/app/features/anomaly_detector/__pycache__
+backend/app/__pycache__/
+backend/app/features/baseline_engine/__pycache__/
+backend/app/features/log_ingestor/__pycache__/
+backend/app/core/__pycache__/
+backend/app/features/anomaly_detector/__pycache__/
 backend/.env
-backend/app/features/risk_engine/__pycache__
-backend/app/features/soc_copilot/__pycache__
-backend/app/features/peer_analysis/__pycache__
-backend/app/features/graph_intelligence/__pycache__
-backend/app/features/threat_simulator/__pycache__
-backend/app/features/websocket_alerts/__pycache__
-backend/app/features/shadow_accounts/__pycache__
+backend/app/features/risk_engine/__pycache__/
+backend/app/features/soc_copilot/__pycache__/
+backend/app/features/peer_analysis/__pycache__/
+backend/app/features/graph_intelligence/__pycache__/
+backend/app/features/threat_simulator/__pycache__/
+backend/app/features/websocket_alerts/__pycache__/
+backend/app/features/shadow_accounts/__pycache__/
