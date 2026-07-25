@@ -88,16 +88,16 @@ export default function NLPTopicTab() {
 
   const anomalyColor = result?.is_topic_anomaly
     ? "text-red-400"
-    : "text-emerald-400";
+    : "text-[#86efac]";
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="glass-panel rounded-2xl p-6">
+      <div className="glass-panel rounded-2xl p-6 bg-[#01021a] border-[#172554]">
         <div className="flex items-center gap-3 mb-2">
-          <Brain className="w-6 h-6 text-violet-400" />
+          <Brain className="w-6 h-6 text-[#86efac]" />
           <h2 className="text-xl font-bold text-white">NLP Topic Anomaly Engine</h2>
-          <span className="ml-auto text-xs px-2 py-1 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30">
+          <span className="ml-auto text-xs px-2.5 py-1 rounded-full bg-[#86efac]/20 text-[#86efac] border border-[#86efac]/30 font-semibold">
             LDA • Kim et al. 2019
           </span>
         </div>
@@ -110,9 +110,9 @@ export default function NLPTopicTab() {
       {/* Inputs */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Corpus */}
-        <div className="glass-panel rounded-2xl p-5 space-y-3">
+        <div className="glass-panel rounded-2xl p-5 space-y-3 bg-[#01021a] border-[#172554]">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-cyan-400" />
+            <FileText className="w-4 h-4 text-[#38bdf8]" />
             <span className="text-sm font-semibold text-white">Normal Corpus Documents</span>
             <span className="text-xs text-zinc-500">(one per line)</span>
           </div>
@@ -120,12 +120,12 @@ export default function NLPTopicTab() {
             value={corpusText}
             onChange={(e) => setCorpusText(e.target.value)}
             rows={8}
-            className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-200 font-mono resize-none focus:outline-none focus:border-violet-500/50"
+            className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-3 text-sm text-zinc-200 font-mono resize-none focus:outline-none focus:border-[#86efac]"
           />
         </div>
 
         {/* Targets */}
-        <div className="glass-panel rounded-2xl p-5 space-y-3">
+        <div className="glass-panel rounded-2xl p-5 space-y-3 bg-[#01021a] border-[#172554]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Search className="w-4 h-4 text-amber-400" />
@@ -133,7 +133,7 @@ export default function NLPTopicTab() {
             </div>
             <button
               onClick={loadAnomaly}
-              className="text-xs px-2 py-1 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition-colors"
+              className="text-xs px-2.5 py-1 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition-colors font-medium"
             >
               Load Anomalous Example
             </button>
@@ -142,19 +142,19 @@ export default function NLPTopicTab() {
             value={targetText}
             onChange={(e) => setTargetText(e.target.value)}
             rows={8}
-            className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-200 font-mono resize-none focus:outline-none focus:border-violet-500/50"
+            className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-3 text-sm text-zinc-200 font-mono resize-none focus:outline-none focus:border-[#86efac]"
           />
         </div>
       </div>
 
       {/* Controls */}
-      <div className="glass-panel rounded-2xl p-5 flex flex-wrap items-end gap-4">
+      <div className="glass-panel rounded-2xl p-5 flex flex-wrap items-end gap-4 bg-[#01021a] border-[#172554]">
         <div className="space-y-1">
           <label className="text-xs text-zinc-400 font-medium">Username</label>
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-violet-500/50 w-36"
+            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#86efac] w-36"
           />
         </div>
         <div className="space-y-1">
@@ -165,13 +165,13 @@ export default function NLPTopicTab() {
             max={20}
             value={nTopics}
             onChange={(e) => setNTopics(Number(e.target.value))}
-            className="bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-violet-500/50 w-24"
+            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#86efac] w-24"
           />
         </div>
         <button
           onClick={run}
           disabled={loading}
-          className="ml-auto px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed glow-violet"
+          className="ml-auto px-6 py-2.5 rounded-xl bg-[#86efac] hover:bg-[#86efac]/90 text-[#111827] font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed glow-primary"
         >
           {loading ? "Analyzing…" : "Run LDA Analysis"}
         </button>
@@ -188,12 +188,12 @@ export default function NLPTopicTab() {
       {result && (
         <div className="space-y-4">
           {/* Score Summary */}
-          <div className={`glass-panel rounded-2xl p-6 border ${result.is_topic_anomaly ? "border-red-500/40 bg-red-500/5" : "border-emerald-500/30 bg-emerald-500/5"}`}>
+          <div className={`glass-panel rounded-2xl p-6 border ${result.is_topic_anomaly ? "border-red-500/40 bg-red-500/5" : "border-[#86efac]/30 bg-[#86efac]/5"}`}>
             <div className="flex items-center gap-4">
               {result.is_topic_anomaly ? (
                 <AlertCircle className="w-8 h-8 text-red-400" />
               ) : (
-                <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                <CheckCircle2 className="w-8 h-8 text-[#86efac]" />
               )}
               <div>
                 <div className={`text-2xl font-bold ${anomalyColor}`}>
@@ -210,11 +210,11 @@ export default function NLPTopicTab() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Flagged Documents */}
             {result.anomalous_documents.length > 0 && (
-              <div className="glass-panel rounded-2xl p-5 space-y-3">
+              <div className="glass-panel rounded-2xl p-5 space-y-3 bg-[#01021a] border-[#172554]">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-red-400" />
                   <span className="text-sm font-semibold text-white">Flagged Documents</span>
-                  <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300">{result.anomalous_documents.length} anomalous</span>
+                  <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">{result.anomalous_documents.length} anomalous</span>
                 </div>
                 <div className="space-y-2">
                   {result.anomalous_documents.map((doc, i) => (
@@ -228,9 +228,9 @@ export default function NLPTopicTab() {
             )}
 
             {/* Discovered Topics */}
-            <div className="glass-panel rounded-2xl p-5 space-y-3">
+            <div className="glass-panel rounded-2xl p-5 space-y-3 bg-[#01021a] border-[#172554]">
               <div className="flex items-center gap-2">
-                <Tag className="w-4 h-4 text-cyan-400" />
+                <Tag className="w-4 h-4 text-[#38bdf8]" />
                 <span className="text-sm font-semibold text-white">Discovered Topic Keywords</span>
               </div>
               <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
@@ -238,8 +238,8 @@ export default function NLPTopicTab() {
                   const isBaseline = result.baseline_topics.includes(i);
                   const isFlagged = result.flagged_topics.includes(i);
                   return (
-                    <div key={i} className={`px-3 py-2 rounded-lg border text-xs ${isFlagged ? "bg-red-500/10 border-red-500/30" : "bg-white/5 border-white/10"}`}>
-                      <span className={`font-semibold ${isFlagged ? "text-red-300" : isBaseline ? "text-cyan-300" : "text-zinc-300"}`}>
+                    <div key={i} className={`px-3 py-2 rounded-lg border text-xs ${isFlagged ? "bg-red-500/10 border-red-500/30" : "bg-[#111827] border-[#172554]"}`}>
+                      <span className={`font-semibold ${isFlagged ? "text-red-400" : isBaseline ? "text-[#38bdf8]" : "text-zinc-300"}`}>
                         Topic {i} {isFlagged ? "🔴 NEW" : isBaseline ? "🟢 Baseline" : ""}
                       </span>
                       <span className="text-zinc-400 ml-2">{kws.slice(0, 5).join(", ")}</span>
@@ -251,12 +251,12 @@ export default function NLPTopicTab() {
           </div>
 
           {/* Per-doc scores */}
-          <div className="glass-panel rounded-2xl p-5 space-y-3">
+          <div className="glass-panel rounded-2xl p-5 space-y-3 bg-[#01021a] border-[#172554]">
             <span className="text-sm font-semibold text-white">Document-Level Topic Vectors</span>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-[#172554]">
                     <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Document</th>
                     <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Dominant Topic</th>
                     <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Confidence</th>
@@ -267,12 +267,12 @@ export default function NLPTopicTab() {
                   {result.document_vectors.map((dv, i) => {
                     const isAnom = result.anomalous_documents.includes(dv.document);
                     return (
-                      <tr key={i} className={`border-b border-white/5 ${isAnom ? "bg-red-500/5" : ""}`}>
+                      <tr key={i} className={`border-b border-[#172554]/50 ${isAnom ? "bg-red-500/5" : ""}`}>
                         <td className="py-2 pr-4 text-zinc-300 font-mono max-w-xs truncate">{dv.document}</td>
-                        <td className="py-2 pr-4 text-cyan-300">Topic {dv.dominant_topic}</td>
+                        <td className="py-2 pr-4 text-[#38bdf8]">Topic {dv.dominant_topic}</td>
                         <td className="py-2 pr-4 text-zinc-300">{(dv.dominant_topic_probability * 100).toFixed(1)}%</td>
                         <td className="py-2">
-                          <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${isAnom ? "bg-red-500/20 text-red-300" : "bg-emerald-500/20 text-emerald-300"}`}>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${isAnom ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-[#86efac]/20 text-[#86efac] border border-[#86efac]/30"}`}>
                             {isAnom ? "Anomalous" : "Normal"}
                           </span>
                         </td>
@@ -288,3 +288,4 @@ export default function NLPTopicTab() {
     </div>
   );
 }
+

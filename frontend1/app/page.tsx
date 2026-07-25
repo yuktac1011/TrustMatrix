@@ -40,7 +40,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-zinc-50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 font-sans overflow-hidden">
+    <div className="flex h-screen w-full bg-[#111827] text-[#cbd5e1] font-sans overflow-hidden">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
       <div className="flex flex-col flex-1 min-w-0">
@@ -49,7 +49,7 @@ export default function Dashboard() {
           subtitle={titles[activeTab].subtitle} 
         />
         
-        <main className="flex-1 overflow-y-auto p-8 relative">
+        <main className="flex-1 overflow-y-auto p-8 relative bg-[#111827]">
           <div className="max-w-[1400px] mx-auto">
             {renderView()}
           </div>

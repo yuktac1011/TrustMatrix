@@ -18,16 +18,16 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   ];
 
   return (
-    <aside className="w-64 glass-panel border-r border-zinc-200 dark:border-white/5 flex flex-col h-full bg-white/40 dark:bg-black/40 z-10">
+    <aside className="w-64 glass-panel border-r border-[#172554] flex flex-col h-full bg-[#01021a]/90 z-10">
       <div className="p-6 flex items-center gap-3">
-        <ShieldHalf className="w-8 h-8 text-violet-600 dark:text-violet-500" />
-        <span className="font-bold text-xl tracking-wider text-black dark:text-white">
-          TRUST<span className="text-violet-600 dark:text-violet-500">MATRIX</span>
+        <ShieldHalf className="w-8 h-8 text-[#86efac]" />
+        <span className="font-bold text-xl tracking-wider text-white">
+          TRUST<span className="text-[#86efac]">MATRIX</span>
         </span>
       </div>
 
-      <div className="px-6 pb-4 text-xs font-bold text-zinc-500 tracking-widest uppercase">
-        Menu
+      <div className="px-6 pb-4 text-xs font-bold text-zinc-400 tracking-widest uppercase">
+        Navigation
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto">
@@ -40,28 +40,29 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center gap-3 px-6 py-3 transition-all duration-300 ${
                 isActive
-                  ? "sidebar-active-gradient text-black dark:text-white font-medium"
-                  : "text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-zinc-100 hover:bg-black/5 dark:hover:bg-white/5 border-l-2 border-transparent"
+                  ? "sidebar-active-gradient text-[#86efac] font-medium"
+                  : "text-zinc-400 hover:text-white hover:bg-[#172554]/40 border-l-2 border-transparent"
               }`}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className={`w-5 h-5 ${isActive ? "text-[#86efac]" : "text-zinc-400"}`} />
               <span>{item.label}</span>
             </button>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-zinc-200 dark:border-white/5">
-        <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-zinc-200 dark:border-white/5">
-          <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-bold text-sm text-white">
+      <div className="p-4 border-t border-[#172554]">
+        <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#111827] border border-[#172554]">
+          <div className="w-10 h-10 rounded-full bg-[#86efac] flex items-center justify-center font-bold text-sm text-[#111827] shadow-[0_0_10px_rgba(134,239,172,0.4)]">
             AN
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-sm font-semibold text-black dark:text-white">Username</span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">SOC Tier-3</span>
+            <span className="text-sm font-semibold text-white">Analyst</span>
+            <span className="text-xs text-[#86efac]">SOC Tier-3 Lead</span>
           </div>
         </div>
       </div>
     </aside>
   );
 }
+

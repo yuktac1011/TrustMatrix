@@ -73,21 +73,21 @@ function ActionCard({
 
   const statusColor =
     result?.status === "EXECUTED"
-      ? "text-emerald-400"
+      ? "text-[#86efac]"
       : result?.status === "ALREADY_APPLIED"
       ? "text-amber-400"
       : "text-red-400";
 
   return (
-    <div className="glass-panel rounded-2xl p-5 space-y-4">
+    <div className="glass-panel rounded-2xl p-5 space-y-4 bg-[#01021a] border-[#172554]">
       {/* Title */}
       <div className="flex items-center gap-3">
         <div className={`w-9 h-9 rounded-xl ${color} flex items-center justify-center shrink-0`}>
-          <Icon className="w-5 h-5 text-white" />
+          <Icon className="w-5 h-5 text-[#111827]" />
         </div>
         <div>
           <div className="text-sm font-semibold text-white">{title}</div>
-          <div className="text-xs text-zinc-500">{description}</div>
+          <div className="text-xs text-zinc-400">{description}</div>
         </div>
       </div>
 
@@ -100,7 +100,7 @@ function ActionCard({
             placeholder={f.placeholder}
             value={values[f.name] || ""}
             onChange={(e) => setValues((prev) => ({ ...prev, [f.name]: e.target.value }))}
-            className="w-full bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-500/50"
+            className="w-full bg-[#111827] border border-[#172554] rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#86efac]"
           />
         ))}
       </div>
@@ -109,7 +109,7 @@ function ActionCard({
       <button
         onClick={handle}
         disabled={loading}
-        className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm text-white transition-all disabled:opacity-50 ${color} hover:opacity-90`}
+        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm text-[#111827] transition-all disabled:opacity-50 bg-[#86efac] hover:bg-[#86efac]/90 glow-primary"
       >
         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
         {loading ? "Executing…" : `Execute Playbook`}
@@ -124,9 +124,9 @@ function ActionCard({
 
       {/* Result */}
       {result && (
-        <div className="border border-white/10 rounded-xl overflow-hidden">
+        <div className="border border-[#172554] rounded-xl overflow-hidden bg-[#111827]">
           {/* Status bar */}
-          <div className={`px-4 py-3 flex items-center justify-between border-b border-white/10 bg-white/5`}>
+          <div className="px-4 py-3 flex items-center justify-between border-b border-[#172554] bg-[#01021a]">
             <div className="flex items-center gap-2">
               <CheckCircle2 className={`w-4 h-4 ${statusColor}`} />
               <span className={`text-sm font-bold ${statusColor}`}>{result.status}</span>
@@ -134,7 +134,7 @@ function ActionCard({
             </div>
             <button
               onClick={() => setExpanded((p) => !p)}
-              className="text-zinc-500 hover:text-zinc-300 transition-colors"
+              className="text-zinc-400 hover:text-white transition-colors"
             >
               {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
@@ -148,8 +148,8 @@ function ActionCard({
               <div className="space-y-1">
                 {result.playbook_steps.map((step, i) => (
                   <div key={i} className="flex items-start gap-2 text-xs">
-                    <span className="text-emerald-400 shrink-0">▸</span>
-                    <span className="text-zinc-400 font-mono">{step}</span>
+                    <span className="text-[#86efac] shrink-0">▸</span>
+                    <span className="text-zinc-300 font-mono">{step}</span>
                   </div>
                 ))}
               </div>
@@ -157,7 +157,7 @@ function ActionCard({
               {/* Integration targets */}
               <div className="flex flex-wrap gap-1 pt-1">
                 {result.integration_targets.map((t) => (
-                  <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                  <span key={t} className="text-xs px-2.5 py-0.5 rounded-full bg-[#86efac]/10 text-[#86efac] border border-[#86efac]/30 font-medium">
                     {t}
                   </span>
                 ))}
@@ -188,16 +188,16 @@ function AuditLogPanel() {
   };
 
   return (
-    <div className="glass-panel rounded-2xl p-5 space-y-4">
+    <div className="glass-panel rounded-2xl p-5 space-y-4 bg-[#01021a] border-[#172554]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <ClipboardList className="w-5 h-5 text-zinc-400" />
+          <ClipboardList className="w-5 h-5 text-[#86efac]" />
           <span className="text-sm font-semibold text-white">SOAR Audit Log</span>
         </div>
         <button
           onClick={load}
           disabled={loading}
-          className="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition-colors"
+          className="text-xs px-3 py-1.5 rounded-lg bg-[#111827] hover:bg-[#172554] text-[#86efac] border border-[#172554] transition-colors font-medium"
         >
           {loading ? "Loading…" : "Refresh Audit Log"}
         </button>
@@ -208,10 +208,10 @@ function AuditLogPanel() {
       ) : (
         <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
           {logs.map((log) => (
-            <div key={log.audit_log_id} className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div key={log.audit_log_id} className="px-4 py-3 rounded-xl bg-[#111827] border border-[#172554] space-y-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-semibold text-white capitalize">{log.action.replace(/_/g, " ")}</span>
-                <span className={`font-bold ${log.status === "EXECUTED" ? "text-emerald-400" : "text-amber-400"}`}>{log.status}</span>
+                <span className={`font-bold ${log.status === "EXECUTED" ? "text-[#86efac]" : "text-amber-400"}`}>{log.status}</span>
               </div>
               <div className="text-xs text-zinc-400">
                 Target: <span className="text-zinc-200 font-mono">{log.target}</span>
@@ -233,7 +233,7 @@ export default function SOARTab() {
       icon: Shield,
       title: "Isolate Host",
       description: "Quarantine a compromised workstation from the network",
-      color: "bg-red-600",
+      color: "bg-[#86efac]",
       fields: [
         { name: "hostname", label: "Hostname", placeholder: "e.g. WORKSTATION-JDOE-01" },
         { name: "reason", label: "Reason", placeholder: "Reason for isolation" },
@@ -247,7 +247,7 @@ export default function SOARTab() {
       icon: Lock,
       title: "Lock User Account",
       description: "Disable account across Active Directory & Okta IAM",
-      color: "bg-orange-600",
+      color: "bg-[#38bdf8]",
       fields: [
         { name: "username", label: "Username", placeholder: "e.g. jdoe" },
         { name: "reason", label: "Reason", placeholder: "Reason for locking" },
@@ -261,7 +261,7 @@ export default function SOARTab() {
       icon: KeyRound,
       title: "Revoke OAuth Tokens",
       description: "Invalidate all active sessions and refresh tokens",
-      color: "bg-amber-600",
+      color: "bg-[#a78bfa]",
       fields: [
         { name: "username", label: "Username", placeholder: "e.g. jdoe" },
         { name: "reason", label: "Reason", placeholder: "Reason for revocation" },
@@ -274,7 +274,7 @@ export default function SOARTab() {
       icon: Smartphone,
       title: "Force Step-Up MFA",
       description: "Enforce MFA challenge on next login via Okta / Azure AD",
-      color: "bg-violet-600",
+      color: "bg-[#86efac]",
       fields: [
         { name: "username", label: "Username", placeholder: "e.g. jdoe" },
         { name: "mfa_level", label: "MFA Method", placeholder: "TOTP / SMS / HARDWARE_KEY" },
@@ -288,7 +288,7 @@ export default function SOARTab() {
       icon: Ban,
       title: "Block IP Address",
       description: "Push DENY rule to firewall, AWS SGs, and Cloudflare WAF",
-      color: "bg-rose-700",
+      color: "bg-red-400",
       fields: [
         { name: "ip_address", label: "IP Address", placeholder: "e.g. 203.0.113.120" },
         { name: "reason", label: "Reason", placeholder: "Reason for IP block" },
@@ -301,7 +301,7 @@ export default function SOARTab() {
       icon: FolderX,
       title: "Quarantine File",
       description: "Move suspicious file to isolated quarantine via EDR RTR",
-      color: "bg-pink-700",
+      color: "bg-amber-400",
       fields: [
         { name: "file_path", label: "File Path", placeholder: "e.g. C:\\Users\\jdoe\\mimikatz.exe" },
         { name: "hostname", label: "Hostname", placeholder: "e.g. WORKSTATION-JDOE-01" },
@@ -316,11 +316,11 @@ export default function SOARTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="glass-panel rounded-2xl p-6">
+      <div className="glass-panel rounded-2xl p-6 bg-[#01021a] border-[#172554]">
         <div className="flex items-center gap-3 mb-2">
-          <Shield className="w-6 h-6 text-red-400" />
+          <Shield className="w-6 h-6 text-[#86efac]" />
           <h2 className="text-xl font-bold text-white">SOAR Remediation Playbooks</h2>
-          <span className="ml-auto text-xs px-2 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
+          <span className="ml-auto text-xs px-2.5 py-1 rounded-full bg-[#86efac]/20 text-[#86efac] border border-[#86efac]/30 font-semibold">
             6 Active Playbooks
           </span>
         </div>
@@ -342,3 +342,4 @@ export default function SOARTab() {
     </div>
   );
 }
+
