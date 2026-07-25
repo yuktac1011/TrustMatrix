@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TrustMatrix // UEBA AI SOC Platform",
+  title: "TrustMatrix",
   description: "User & Entity Behavior Analytics Dashboard for Insider Risk Management",
 };
 
