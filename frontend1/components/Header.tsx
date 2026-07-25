@@ -1,4 +1,5 @@
-import { Search, PlayCircle, ShieldAlert } from "lucide-react";
+"use client";
+import { Search, PlayCircle, ShieldAlert, Radio, Activity, Cpu } from "lucide-react";
 
 interface HeaderProps {
   title: string;
@@ -7,30 +8,54 @@ interface HeaderProps {
 
 export default function Header({ title, subtitle }: HeaderProps) {
   return (
-    <header className="h-20 border-b border-[#172554] glass-panel bg-[#01021a]/80 flex items-center justify-between px-8 shrink-0 z-10">
-      <div>
-        <h1 className="text-2xl font-bold text-white tracking-wide">
-          {title}
-        </h1>
-        <p className="text-xs text-[#cbd5e1]/70">{subtitle}</p>
+    <header className="h-16 border-b border-[#172554] glass-panel bg-[#01021a]/90 flex items-center justify-between px-6 shrink-0 z-20 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+      {/* Title & Breadcrumb */}
+      <div className="flex items-center gap-4">
+        <div>
+          <div className="flex items-center gap-2 text-[10px] font-mono text-[#86efac] tracking-wider uppercase">
+            <span>TRUSTMATRIX</span>
+            <span>//</span>
+            <span>SOC COMMAND</span>
+          </div>
+          <h1 className="text-lg font-extrabold text-white tracking-wide leading-tight">
+            {title}
+          </h1>
+        </div>
       </div>
 
-      <div className="flex items-center gap-6">
-        <div className="relative group">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-[#86efac] transition-colors" />
+      {/* Center Tactical Telemetry Ticker Strip */}
+      <div className="hidden lg:flex items-center gap-4 text-xs font-mono">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090d16] border border-[#172554]">
+          <Radio className="w-3.5 h-3.5 text-[#86efac] animate-pulse" />
+          <span className="text-zinc-400">TELEMETRY:</span>
+          <span className="text-white font-bold">1,482 EPS</span>
+        </div>
+
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090d16] border border-[#172554]">
+          <Activity className="w-3.5 h-3.5 text-[#38bdf8]" />
+          <span className="text-zinc-400">RISK INDEX:</span>
+          <span className="text-[#38bdf8] font-bold">42.8%</span>
+        </div>
+
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090d16] border border-[#172554]">
+          <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+          <span className="text-zinc-400">CRITICAL:</span>
+          <span className="text-red-400 font-bold">3 PENDING</span>
+        </div>
+      </div>
+
+      {/* Right Controls */}
+      <div className="flex items-center gap-4">
+        <div className="relative hidden md:block">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
           <input
             type="text"
             placeholder="Search identities, logs..."
-            className="w-64 bg-[#111827] border border-[#172554] rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#86efac] focus:ring-1 focus:ring-[#86efac]/50 transition-all placeholder:text-zinc-500 text-white"
+            className="w-52 bg-[#090d16] border border-[#172554] rounded-full pl-9 pr-4 py-1.5 text-xs focus:outline-none focus:border-[#86efac] text-white"
           />
         </div>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#172554]/60 border border-[#172554] text-xs font-semibold text-[#86efac]">
-          <ShieldAlert className="w-3.5 h-3.5 text-[#86efac]" />
-          <span>System Status: Online</span>
-        </div>
-
-        <button className="flex items-center gap-2 bg-[#86efac] hover:bg-[#86efac]/90 text-[#111827] px-4 py-2 rounded-full font-semibold transition-all glow-primary text-sm shadow-[0_0_12px_rgba(134,239,172,0.3)]">
+        <button className="flex items-center gap-2 bg-[#86efac] hover:bg-[#86efac]/90 text-[#090d16] px-4 py-1.5 rounded-full font-bold transition-all glow-primary text-xs shadow-[0_0_15px_rgba(134,239,172,0.3)]">
           <PlayCircle className="w-4 h-4" />
           Run Simulation
         </button>
@@ -38,4 +63,3 @@ export default function Header({ title, subtitle }: HeaderProps) {
     </header>
   );
 }
-

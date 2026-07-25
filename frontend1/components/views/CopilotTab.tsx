@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Bot, Sparkles } from "lucide-react";
 import { explainThreat } from "../../lib/api";
 
@@ -8,7 +9,7 @@ export default function CopilotTab() {
   const [score, setScore] = useState(84);
   const [reasons, setReasons] = useState("Late hour activity, Massive data transfer");
   const [mitre, setMitre] = useState("T1078, T1048.002");
-  const [logs, setLogs] = useState("User admin_user logged in at 3:00 AM from country 'Russia' (historical standard: 'US') using laptop LAPTOP-99121.\\nExecuted PowerShell script with administrative privilege level.\\nDownloaded 450MB of proprietary research data via VPN endpoint.");
+  const [logs, setLogs] = useState("User admin_user logged in at 3:00 AM from country 'Russia' (historical standard: 'US') using laptop LAPTOP-99121.\nExecuted PowerShell script with administrative privilege level.\nDownloaded 450MB of proprietary research data via VPN endpoint.");
 
   const [analyzed, setAnalyzed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,6 @@ export default function CopilotTab() {
       const data = await explainThreat(payload);
       setReport(data);
     } catch {
-      // Mock fallback
       setTimeout(() => {
         setReport({
           summary: `The user '${username}' showed significant security deviations. Multi-point baseline drift indicates a high risk profile. Trigger features include: ${reasons}. Action threshold was crossed with risk value: ${score}%.`,
@@ -50,58 +50,66 @@ export default function CopilotTab() {
   };
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 h-[calc(100vh-12rem)]">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start"
+    >
       {/* Context Setup */}
-      <div className="glass-panel p-6 rounded-2xl bg-[#01021a] border-[#172554] xl:col-span-4 flex flex-col h-full overflow-y-auto">
-        <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-white">
+      <div className="glass-panel p-6 rounded-2xl bg-[#01021a] border-[#172554] xl:col-span-4 flex flex-col space-y-5">
+        <h3 className="text-xl font-semibold flex items-center gap-2 text-white border-b border-[#172554] pb-4">
           <Bot className="text-[#86efac]" />
           Investigation Context
         </h3>
-        
-        <div className="space-y-4 flex-1">
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Target Username</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm focus:border-[#86efac] text-white" />
+
+        <div className="space-y-4">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">Target Username</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm focus:border-[#86efac] focus:outline-none text-white font-mono" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Risk Score (0-100)</label>
-            <input type="number" value={score} onChange={(e) => setScore(Number(e.target.value))} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm focus:border-[#86efac] text-white" />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">Risk Score (0-100)</label>
+            <input type="number" value={score} onChange={(e) => setScore(Number(e.target.value))} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm focus:border-[#86efac] focus:outline-none text-white font-mono" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Flagged Indicators</label>
-            <input type="text" value={reasons} onChange={(e) => setReasons(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm focus:border-[#86efac] text-white" />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">Flagged Indicators</label>
+            <input type="text" value={reasons} onChange={(e) => setReasons(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm focus:border-[#86efac] focus:outline-none text-white font-mono" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">MITRE Techniques</label>
-            <input type="text" value={mitre} onChange={(e) => setMitre(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm focus:border-[#86efac] text-white" />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">MITRE Techniques</label>
+            <input type="text" value={mitre} onChange={(e) => setMitre(e.target.value)} className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm focus:border-[#86efac] focus:outline-none text-white font-mono" />
           </div>
-          <div className="flex-1 flex flex-col">
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Raw Activity Trace Summary</label>
-            <textarea 
-              className="w-full flex-1 bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm font-mono text-zinc-200 resize-none focus:border-[#86efac]"
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">Raw Activity Trace Summary</label>
+            <textarea
+              rows={4}
+              className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-3 text-sm font-mono text-zinc-200 resize-none focus:border-[#86efac] focus:outline-none"
               value={logs}
               onChange={(e) => setLogs(e.target.value)}
             ></textarea>
           </div>
         </div>
 
-        <button 
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={handleAskCopilot}
           disabled={loading}
-          className="w-full bg-[#86efac] hover:bg-[#86efac]/90 disabled:opacity-50 text-[#111827] px-4 py-4 rounded-xl font-bold transition-all glow-primary flex justify-center items-center gap-2 mt-6">
+          className="w-full bg-[#86efac] hover:bg-[#86efac]/90 disabled:opacity-50 text-[#111827] px-4 py-3.5 rounded-xl font-bold transition-all glow-primary flex justify-center items-center gap-2 cursor-pointer shrink-0"
+        >
           <Sparkles className="w-5 h-5" />
           {loading ? "Analyzing..." : "Ask AI SOC Copilot to Explain"}
-        </button>
+        </motion.button>
       </div>
 
       {/* Output Panel */}
-      <div className="glass-panel p-8 rounded-2xl bg-[#01021a] border-[#172554] xl:col-span-8 overflow-y-auto">
+      <div className="glass-panel p-8 rounded-2xl bg-[#01021a] border-[#172554] xl:col-span-8">
         <div className="flex justify-between items-center border-b border-[#172554] pb-6 mb-6">
           <h3 className="text-2xl font-semibold flex items-center gap-3 text-white">
             Threat Analysis Report
           </h3>
           {report && (
-            <span className="bg-[#86efac]/20 text-[#86efac] px-3 py-1 rounded-full text-sm border border-[#86efac]/30 glow-primary flex items-center gap-2">
+            <span className="bg-[#86efac]/20 text-[#86efac] px-3.5 py-1 rounded-full text-xs font-mono font-bold border border-[#86efac]/30 glow-primary flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> Confidence: {report.confidence_score}
             </span>
           )}
@@ -109,11 +117,15 @@ export default function CopilotTab() {
 
         {analyzed ? (
           loading ? (
-             <div className="flex justify-center items-center h-64 text-[#86efac] animate-pulse font-medium">
-               AI Analyst is reasoning threat vector maps...
-             </div>
+            <div className="flex justify-center items-center h-64 text-[#86efac] animate-pulse font-medium font-mono">
+              AI Analyst is reasoning threat vector maps...
+            </div>
           ) : report && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-8"
+            >
               <div>
                 <h4 className="text-lg font-medium text-white mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#86efac]"></span>
@@ -131,7 +143,7 @@ export default function CopilotTab() {
                 </h4>
                 <div className="flex flex-wrap gap-3">
                   {report.suspected_tactics?.map((t: string, i: number) => (
-                    <span key={i} className="bg-red-500/10 text-red-400 border border-red-500/30 px-4 py-2 rounded-lg text-sm font-medium">{t}</span>
+                    <span key={i} className="bg-red-500/10 text-red-400 border border-red-500/30 px-4 py-2 rounded-lg text-sm font-mono font-medium">{t}</span>
                   ))}
                 </div>
               </div>
@@ -144,13 +156,13 @@ export default function CopilotTab() {
                 <ul className="space-y-3">
                   {report.remediation_steps?.map((step: string, i: number) => (
                     <li key={i} className="flex gap-3 text-zinc-300 bg-[#111827] p-3.5 rounded-xl border border-[#172554]">
-                      <div className="w-6 h-6 rounded-full bg-[#86efac]/20 text-[#86efac] flex items-center justify-center text-xs border border-[#86efac]/30 shrink-0 font-bold">{i+1}</div>
+                      <div className="w-6 h-6 rounded-full bg-[#86efac]/20 text-[#86efac] flex items-center justify-center text-xs border border-[#86efac]/30 shrink-0 font-bold font-mono">{i+1}</div>
                       <span>{step}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           )
         ) : (
           <div className="h-64 flex flex-col items-center justify-center text-zinc-500 opacity-50">
@@ -159,7 +171,6 @@ export default function CopilotTab() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
-

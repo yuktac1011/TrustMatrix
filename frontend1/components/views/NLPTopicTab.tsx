@@ -148,30 +148,32 @@ export default function NLPTopicTab() {
       </div>
 
       {/* Controls */}
-      <div className="glass-panel rounded-2xl p-5 flex flex-wrap items-end gap-4 bg-[#01021a] border-[#172554]">
-        <div className="space-y-1">
-          <label className="text-xs text-zinc-400 font-medium">Username</label>
+      <div className="glass-panel rounded-2xl p-6 flex flex-wrap items-end gap-6 bg-[#01021a] border-[#172554]">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">Username</label>
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#86efac] w-36"
+            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-[#86efac] w-44"
           />
         </div>
-        <div className="space-y-1">
-          <label className="text-xs text-zinc-400 font-medium">LDA Topics (N)</label>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono">LDA Topics (N)</label>
           <input
             type="number"
             min={2}
             max={20}
             value={nTopics}
             onChange={(e) => setNTopics(Number(e.target.value))}
-            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#86efac] w-24"
+            className="bg-[#111827] border border-[#172554] rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-[#86efac] w-32"
           />
         </div>
+
         <button
           onClick={run}
           disabled={loading}
-          className="ml-auto px-6 py-2.5 rounded-xl bg-[#86efac] hover:bg-[#86efac]/90 text-[#111827] font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed glow-primary"
+          className="ml-auto px-6 py-3 rounded-xl bg-[#86efac] hover:bg-[#86efac]/90 text-[#111827] font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed glow-primary cursor-pointer"
         >
           {loading ? "Analyzing…" : "Run LDA Analysis"}
         </button>

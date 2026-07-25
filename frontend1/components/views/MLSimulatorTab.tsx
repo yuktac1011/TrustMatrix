@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Cpu, ShieldAlert } from "lucide-react";
 import { analyzeAnomaly } from "../../lib/api";
 
@@ -31,12 +32,11 @@ export default function MLSimulatorTab() {
       },
       historical_features: []
     };
-    
+
     try {
       const data = await analyzeAnomaly(payload);
       setAnalysisResult(data);
     } catch {
-      // Basic mock fallback if backend is offline to preserve the demo feel
       const isAnomaly = failedRatio > 30 || adminCmds > 5 || bytesKb > 50000;
       const score = isAnomaly ? 85 : 15;
       setAnalysisResult({
@@ -54,7 +54,11 @@ export default function MLSimulatorTab() {
   const isAnomaly = analysisResult ? analysisResult.is_anomaly : false;
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="grid grid-cols-1 xl:grid-cols-2 gap-8"
+    >
       {/* Controls */}
       <div className="glass-panel p-6 rounded-2xl bg-[#01021a] border-[#172554]">
         <div className="mb-6">
@@ -68,11 +72,11 @@ export default function MLSimulatorTab() {
         <div className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-zinc-400 mb-2">Username for Analysis</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#86efac] transition-colors text-white"
+              className="w-full bg-[#111827] border border-[#172554] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#86efac] transition-colors text-white font-mono"
             />
           </div>
 
@@ -84,7 +88,7 @@ export default function MLSimulatorTab() {
               </div>
               <input type="range" min={0} max={23} value={loginHour} onChange={(e) => setLoginHour(Number(e.target.value))} className="w-full accent-[#86efac]" />
             </div>
-            
+
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-zinc-400">Failed Login Ratio (%)</span>
@@ -118,42 +122,61 @@ export default function MLSimulatorTab() {
             </div>
           </div>
 
-          <button 
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={handleExecute}
             disabled={loading}
-            className="w-full bg-[#86efac] hover:bg-[#86efac]/90 disabled:opacity-50 text-[#111827] px-4 py-4 rounded-xl font-bold transition-all glow-primary flex justify-center items-center gap-2 mt-4">
+            className="w-full bg-[#86efac] hover:bg-[#86efac]/90 disabled:opacity-50 text-[#111827] px-4 py-4 rounded-xl font-bold transition-all glow-primary flex justify-center items-center gap-2 mt-4 cursor-pointer"
+          >
             <Cpu className="w-5 h-5" />
             {loading ? "Evaluating..." : "Execute ML Ensemble Evaluation"}
-          </button>
+          </motion.button>
         </div>
       </div>
 
       {/* Results Panel */}
       <div className="glass-panel p-6 rounded-2xl bg-[#01021a] border-[#172554] flex flex-col items-center justify-center text-center relative overflow-hidden">
         {analysisResult ? (
-          <>
-            <div className={`absolute top-6 right-6 px-3 py-1 rounded-full text-xs font-bold border ${isAnomaly ? 'bg-red-500/20 text-red-400 border-red-500/50 glow-red' : 'bg-[#86efac]/20 text-[#86efac] border-[#86efac]/50'}`}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full flex flex-col items-center"
+          >
+            <div className={`absolute top-6 right-6 px-3 py-1 rounded-full text-xs font-bold font-mono border ${isAnomaly ? 'bg-red-500/20 text-red-400 border-red-500/50 glow-red' : 'bg-[#86efac]/20 text-[#86efac] border-[#86efac]/50 glow-primary'}`}>
               {isAnomaly ? 'ANOMALY DETECTED' : 'NORMAL'}
             </div>
-            
+
             <h3 className="text-xl font-semibold mb-8 text-white">Evaluation Diagnostics</h3>
-            
-            <div className="relative w-48 h-48 rounded-full border-[8px] border-[#172554] flex items-center justify-center mb-8 bg-[#111827]">
+
+            <motion.div
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100 }}
+              className="relative w-48 h-48 rounded-full border-[8px] border-[#172554] flex items-center justify-center mb-8 bg-[#111827]"
+            >
               <div className={`absolute inset-0 rounded-full border-[8px] ${isAnomaly ? 'border-red-500 glow-red' : 'border-[#86efac] glow-primary'}`} style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', transform: `rotate(${(currentScore / 100) * 360}deg)` }}></div>
               <div className="text-5xl font-bold font-mono text-white">{currentScore.toFixed(1)}%</div>
-            </div>
+            </motion.div>
 
             <div className="w-full max-w-md space-y-4">
-              <div className="flex justify-between items-center p-3.5 rounded-xl bg-[#111827] border border-[#172554]">
+              <motion.div
+                whileHover={{ x: 3 }}
+                className="flex justify-between items-center p-3.5 rounded-xl bg-[#111827] border border-[#172554]"
+              >
                 <span className="text-zinc-400 text-sm">Isolation Forest Score</span>
                 <span className={`font-mono font-bold ${analysisResult.isolation_forest_score > 70 ? 'text-red-400' : 'text-[#86efac]'}`}>{analysisResult.isolation_forest_score.toFixed(1)}%</span>
-              </div>
-              <div className="flex justify-between items-center p-3.5 rounded-xl bg-[#111827] border border-[#172554]">
+              </motion.div>
+
+              <motion.div
+                whileHover={{ x: 3 }}
+                className="flex justify-between items-center p-3.5 rounded-xl bg-[#111827] border border-[#172554]"
+              >
                 <span className="text-zinc-400 text-sm">Autoencoder Loss</span>
                 <span className={`font-mono font-bold ${analysisResult.autoencoder_score > 70 ? 'text-amber-400' : 'text-[#86efac]'}`}>{analysisResult.autoencoder_score.toFixed(1)}%</span>
-              </div>
+              </motion.div>
             </div>
-          </>
+          </motion.div>
         ) : (
           <div className="opacity-50 flex flex-col items-center">
             <ShieldAlert className="w-16 h-16 mb-4 text-[#86efac]" />
@@ -162,7 +185,6 @@ export default function MLSimulatorTab() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
-
