@@ -16,12 +16,8 @@
 <br/>
 
 [![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge&color=dea127)](./LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
 [![Python](https://img.shields.io/badge/Python-3.11+-FFD43B?style=for-the-badge&logo=python&logoColor=black)](https://python.org)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
 
 <br/>
 
@@ -52,7 +48,6 @@
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
   - [Prerequisites](#prerequisites)
-  - [Docker Setup (Recommended)](#docker-setup-recommended)
   - [Manual Setup](#manual-setup)
 - [Threat Intelligence Modules](#-threat-intelligence-modules)
 - [API Overview](#-api-overview)
@@ -174,8 +169,8 @@ Unlike static SIEMs or rule-based triggers, TrustMatrix:
               ┌────────────────────────────┼────────────────────────────┐
               │                            │                            │
     ┌─────────▼──────────┐   ┌────────────▼────────────┐   ┌──────────▼──────────┐
-    │   Next.js Frontend │   │   FastAPI Backend       │   │   PostgreSQL 16     │
-    │   (Planned)        │   │   (Python 3.10+)        │   │   (Primary Store)   │
+    │   Frontend UI      │   │   FastAPI Backend       │   │   Data Storage      │
+    │   (Planned)        │   │   (Python 3.10+)        │   │   (Entity/Logs)     │
     │                    │   │                         │   │                     │
     │  ┌──────────────┐  │   │  ┌────────────────────┐ │   │   Entity Profiles   │
     │  │ SOC Dashboard│  │   │  │ REST / WebSocket   │ │   │   Alerts            │
@@ -205,16 +200,6 @@ Unlike static SIEMs or rule-based triggers, TrustMatrix:
 
 ## 🛠 Tech Stack
 
-### Frontend (Architecture Planned)
-
-| Technology | Purpose |
-|---|---|
-| **Next.js 14+** | App framework & SSR/SSG |
-| **React / TypeScript** | UI components & Static typing |
-| **Tailwind CSS** | Utility-first styling |
-| **Zustand & TanStack** | State management and caching |
-| **Recharts / Vis.js** | Risk radar, entity relationship graphs |
-
 ### Backend (Implemented)
 
 | Technology | Version | Purpose |
@@ -233,9 +218,7 @@ Unlike static SIEMs or rule-based triggers, TrustMatrix:
 
 | Technology | Purpose |
 |---|---|
-| **PostgreSQL 16** | Relational data store for alerts and entities |
 | **Redis 7** | Caching, Rate limiting, Celery broker |
-| **Docker Compose** | Containerized local orchestration |
 
 <br/>
 
@@ -279,14 +262,6 @@ Make sure the following tools are installed on your machine:
 | Tool | Minimum Version | Install |
 |---|---|---|
 | **Python** | 3.10+ | [python.org](https://python.org) |
-| **Docker** | 24+ | [docker.com](https://docker.com) |
-| **Docker Compose** | 2.x | included with Docker Desktop |
-
----
-
-### Docker Setup (Recommended)
-
-*Coming soon with the full docker-compose integration.*
 
 ---
 
@@ -379,7 +354,7 @@ entities (
   risk_score     FLOAT DEFAULT 0.0
 )
 
--- Raw Log Storage (Clickhouse/Postgres)
+-- Raw Log Storage
 logs (
   log_id         UUID PRIMARY KEY,
   entity_id      UUID REFERENCES entities(entity_id),
@@ -476,11 +451,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 <br/>
 
-[![GitHub Stars](https://img.shields.io/github/stars/your-org/AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS?style=for-the-badge&color=dea127)](https://github.com/your-org/datasetos)
-[![GitHub Forks](https://img.shields.io/github/forks/your-org/AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS?style=for-the-badge&color=333)](https://github.com/your-org/datasetos)
-[![Open Issues](https://img.shields.io/github/issues/your-org/AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS?style=for-the-badge&color=dc2626)](https://github.com/your-org/datasetos)
 
-<br/>
 
 *"Is this behavior normal?"*
 
