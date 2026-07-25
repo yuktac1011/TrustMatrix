@@ -7,6 +7,7 @@ from app.features.baseline_engine.router import router as baseline_router
 from app.features.anomaly_detector.router import router as anomaly_router
 from app.features.soc_copilot.router import router as copilot_router
 from app.features.risk_engine.router import router as risk_router
+from app.features.peer_analysis.router import router as peer_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -29,6 +30,7 @@ app.include_router(baseline_router, prefix=settings.API_V1_STR)
 app.include_router(anomaly_router, prefix=settings.API_V1_STR)
 app.include_router(copilot_router, prefix=settings.API_V1_STR)
 app.include_router(risk_router, prefix=settings.API_V1_STR)
+app.include_router(peer_router, prefix=settings.API_V1_STR)
 
 
 @app.get("/health", tags=["System Health"])

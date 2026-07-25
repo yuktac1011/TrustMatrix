@@ -8,3 +8,5 @@ backend/app/features/anomaly_detector/__pycache__
 backend/.env
 backend/app/features/risk_engine/__pycache__
 backend/app/features/soc_copilot/__pycache__
+backend/app/features/peer_analysis/__pycache__
+backend/app/features/graph_intelligence/__pycache__
