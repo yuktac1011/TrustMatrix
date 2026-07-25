@@ -6,3 +6,5 @@ backend/app/features/log_ingestor/__pycache__
 backend/app/core/__pycache__
 backend/app/features/anomaly_detector/__pycache__
 backend/.env
+backend/app/features/risk_engine/__pycache__
+backend/app/features/soc_copilot/__pycache__
