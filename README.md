@@ -198,12 +198,17 @@ AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/
 │       └── 📂 features/             # Threat Intelligence Engines
 │           ├── 📂 anomaly_detector/ # Isolation Forest & Autoencoder models
 │           ├── 📂 baseline_engine/  # Entity profiling & baseline storage
-│           ├── 📂 log_ingestor/     # High-speed data ingest pipeline
-│           ├── 📂 soc_copilot/      # GenAI explanation engine
-│           ├── 📂 risk_engine/      # Composite risk scoring
+│           ├── 📂 cert_evaluator/   # CERT benchmark dataset evaluator & metrics
+│           ├── 📂 graph_intelligence/ # NetworkX relationship mapping & lateral movement
+│           ├── 📂 log_ingestor/     # High-speed log ingestion & normalization pipeline
+│           ├── 📂 nlp_topic_engine/ # LDA topic modeling for document access drift
 │           ├── 📂 peer_analysis/    # Peer cohort outlier detection
-│           ├── 📂 shadow_accounts/  # Orphaned account discovery
-│           └── 📂 soar_remediation/ # Response playbooks
+│           ├── 📂 risk_engine/      # Composite risk scoring engine
+│           ├── 📂 shadow_accounts/  # Unmanaged/orphaned account discovery
+│           ├── 📂 soar_remediation/ # Active containment playbooks & audit logging
+│           ├── 📂 soc_copilot/      # GenAI explanation & triage engine
+│           ├── 📂 threat_simulator/ # Simulated attack vector generation
+│           └── 📂 websocket_alerts/ # Real-time alert streaming
 └── 📄 README.md                     # Hackathon project documentation
 ```
 
