@@ -63,6 +63,8 @@ export default function LandingPage() {
           mouseStrength={0.3}
           pageLoadAnimation={false}
           brightness={0.8}
+          className=""
+          style={{}}
         />
       </div>
 
