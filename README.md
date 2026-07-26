@@ -17,13 +17,14 @@
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.11-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Mobile App](https://img.shields.io/badge/Mobile_App-iOS_%7C_Android-007AFF?style=for-the-badge&logo=apple&logoColor=white)](#)
 [![Python](https://img.shields.io/badge/Python-3.10+-FFD43B?style=for-the-badge&logo=python&logoColor=black)](https://python.org)
 [![Tailwind CSS v4](https://img.shields.io/badge/TailwindCSS-v4.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge&color=dea127)](./LICENSE)
 
 <br/>
 
-> **TrustMatrix** is a Next-Gen User & Entity Behavior Analytics (UEBA) and Autonomous Threat Hunting Platform built for modern Security Operations Centers (SOCs). 
+> **TrustMatrix** is a **Dual-Platform (Web Platform & Mobile App)** Next-Gen User & Entity Behavior Analytics (UEBA) and Autonomous Threat Hunting Platform built for modern Security Operations Centers (SOCs) and security teams on the go.
 > Instead of relying on static SIEM rules that flood analysts with false positives, TrustMatrix continuously profiles entity behavior using machine learning ensemble models (Isolation Forests, Autoencoders), Graph Intelligence, NLP topic extraction, and Generative AI SOC Copilot for instant threat explainability and SOAR remediation.
 
 <br/>
@@ -38,6 +39,7 @@
 
 - [🧠 Core Value Proposition](#-core-value-proposition)
 - [🎯 Key Features & Modules](#-key-features--modules)
+- [✨ Extra Features (Web & Mobile App)](#-extra-features-web--mobile-app)
 - [🎨 Next-Gen UI/UX Design System](#-next-gen-uiux-design-system)
 - [🏛️ System Architecture](#️-system-architecture)
 - [💻 Tech Stack](#-tech-stack)
@@ -85,9 +87,9 @@ TrustMatrix changes the paradigm from:
 
 ---
 
-## ✨ Extra Features Added
+## ✨ Extra Features (Web & Mobile App)
 
-<br/>
+### 🌐 Extra Features — Web Platform
 
 | Module | What It Does |
 |---|---|
@@ -102,6 +104,19 @@ TrustMatrix changes the paradigm from:
 | 🎯 **Threat Simulator** | Built-in engine to safely simulate realistic insider threat scenarios for continuous testing and validation. |
 
 <br/>
+
+### 📱 Extra Features — Mobile App
+
+| Module | What It Does |
+|---|---|
+| 📲 **On-the-Go SOC Monitoring** | Real-time push notifications for critical threat alerts and high-risk entity score spikes. |
+| ⚡ **1-Click Mobile SOAR Containment** | Execute host isolation, account lockout, or token revocation directly from mobile devices. |
+| 🗣️ **Voice-Activated SOC Copilot** | Query AI threat analysis and incident summaries using natural voice inputs on mobile devices. |
+| 📊 **Mobile Security Radar** | Compact interactive risk radar and heatmaps specifically optimized for touchscreens. |
+| 🔐 **Biometric SOC Authentication** | Secure analyst login via FaceID / Fingerprint biometric authentication for instant access. |
+
+<br/>
+
 
 ---
 
@@ -122,28 +137,27 @@ The frontend (`frontend1`) was built from scratch with a premium aesthetic inspi
 
 ```text
                                ┌─────────────────────────────────────────┐
-                               │           TrustMatrix Platform          │
+                               │     TrustMatrix Dual-Platform Ecosystem │
                                └─────────────────────────────────────────┘
                                                     │
                  ┌──────────────────────────────────┴──────────────────────────────────┐
                  │                                                                     │
-    ┌────────────▼─────────────┐                             ┌─────────────────────────▼──────────┐
-    │   Next.js 16 Frontend    │                             │      FastAPI Backend (Python 3.10+) │
-    │   (App Router, React 19) │                             │      http://localhost:8000/api/v1  │
-    │                          │                             │                                    │
-    │  ┌────────────────────┐  │   REST API Requests (api.ts)│  ┌──────────────────────────────┐  │
-    │  │ Overview Dashboard │  ├────────────────────────────┼─►│ Log Ingestion & Normalizer   │  │
-    │  │ Ingestion Terminal │  │                             │  ├──────────────────────────────┤  │
-    │  │ Baseline Engine    │  │                             │  │ Baseline Engine              │  │
-    │  │ ML Simulator       │  │                             │  ├──────────────────────────────┤  │
-    │  │ GenAI SOC Copilot  │  │◄────────────────────────────┼──┤ ML Ensemble (Isolation       │  │
-    │  └────────────────────┘  │   JSON Telemetry & Reports  │  │ Forest & Autoencoders)       │  │
-    │  ┌────────────────────┐  │                             │  ├──────────────────────────────┤  │
-    │  │ IBM Plex Serif     │  │                             │  │ GenAI SOC Copilot & SOAR     │  │
-    │  │ Light/Dark Glass   │  │                             │  ├──────────────────────────────┤  │
-    │  └────────────────────┘  │                             │  │ Peer Analysis & Shadow Accts │  │
-    └──────────────────────────┘                             │  └──────────────────────────────┘  │
-                                                             └────────────────────────────────────┘
+    ┌────────────▼─────────────┐   ┌──────────────────────────┐     ┌──────────────────▼──────────┐
+    │   Next.js 16 Web UI      │   │  Mobile SOC App Client   │     │  FastAPI Backend (Python 3.10)│
+    │   (App Router, React 19) │   │  (iOS / Android Touch UI)│     │  http://localhost:8000/api/v1│
+    │                          │   │                          │     │                             │
+    │  ┌────────────────────┐  │   │  ┌────────────────────┐  │     │  ┌────────────────────────┐ │
+    │  │ Overview Dashboard │  │   │  │ Push Notifications │  │     │  │ Log Ingestion & Normal │ │
+    │  │ Ingestion Terminal │  ├───┼──┤ 1-Click Mobile SOAR│  ├────►│  ├────────────────────────┤ │
+    │  │ Baseline Engine    │  │   │  │ Mobile Risk Radar  │  │     │  │ Baseline & ML Ensemble │ │
+    │  │ ML Simulator       │  │   │  │ Voice SOC Copilot  │  │     │  │ (Isolation Forest & AE)│ │
+    │  │ GenAI SOC Copilot  │  │   │  └────────────────────┘  │     │  ├────────────────────────┤ │
+    │  └────────────────────┘  │   └──────────────────────────┘     │  │ GenAI Copilot & SOAR   │ │
+    │  ┌────────────────────┐  │      REST API & WebSockets         │  ├────────────────────────┤ │
+    │  │ IBM Plex Serif     │  ├───────────────────────────────────►│  │ Peer & Shadow Accounts │ │
+    │  │ Light/Dark Glass   │  │      JSON Telemetry & Alerts       │  └────────────────────────┘ │
+    │  └────────────────────┘  │                                    └─────────────────────────────┘
+    └──────────────────────────┘
 ```
 
 <br/>
@@ -152,20 +166,31 @@ The frontend (`frontend1`) was built from scratch with a premium aesthetic inspi
 
 ## 💻 Tech Stack
 
-### Frontend (`frontend1`)
-- **Framework**: Next.js 16 (React 19)
+### 🌐 Web Platform (`frontend1`)
+- **Framework**: Next.js 16 (React 19, Turbopack)
 - **Styling**: Vanilla CSS + Tailwind CSS v4
 - **Typography**: IBM Plex Serif
 - **Icons**: Lucide React
 - **Charts & Visuals**: Chart.js / React-ChartJS-2 / Framer Motion
-- **API Integration**: Custom central `api.ts` module with native `fetch`
+- **API Integration**: Central `api.ts` module with native `fetch`
 
-### Backend (`backend`)
+### 📱 Mobile App Platform
+- **Framework**: React Native / Expo (Cross-platform iOS & Android)
+- **Security & Auth**: Biometric Authentication (FaceID / TouchID)
+- **Alerts**: Real-time Push Notifications & WebSocket stream
+- **Voice AI**: Speech-to-Text integration for Voice SOC Copilot queries
+
+### 🐍 Backend Core (`backend`)
 - **Framework**: FastAPI (Python 3.10+)
 - **Server**: Uvicorn ASGI Server
-- **ML & Data Science**: `scikit-learn` (Isolation Forest), `numpy`, `pandas`
+- **ML & Data Science**: `scikit-learn` (Isolation Forest), `numpy`, `pandas`, `PyTorch` (Autoencoder)
 - **Graph Intelligence**: `NetworkX`
 - **GenAI Copilot**: OpenAI / Google Generative AI integration
+
+### 🚀 CI/CD & Cloud Deployment
+- **Backend Cloud Host**: Render (Docker / Python Web Service)
+- **Frontend Cloud Host**: Vercel
+- **Automated CI Checks**: GitHub Actions (`.github/workflows/frontend-check.yml`)
 
 <br/>
 
@@ -175,7 +200,9 @@ The frontend (`frontend1`) was built from scratch with a premium aesthetic inspi
 
 ```text
 AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/
-├── 📂 frontend1/                     # Next.js 16 Futuristic UI
+├── 📂 .github/workflows/             # CI/CD Automation
+│   └── 📄 frontend-check.yml        # GitHub Actions Next.js build & typecheck workflow
+├── 📂 frontend1/                     # Next.js 16 Web Dashboard Application
 │   ├── 📂 app/                      # App router (globals.css, layout.tsx, page.tsx)
 │   ├── 📂 components/               # UI layout components
 │   │   ├── Header.tsx               # Top navigation with Sun/Moon theme toggle
@@ -191,11 +218,13 @@ AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/
 │   └── 📄 package.json              # Next.js dependencies
 ├── 📂 backend/                      # FastAPI Python Application
 │   ├── 📄 requirements.txt          # Python dependencies
+│   ├── 📄 Dockerfile                # Render dynamic PORT container setup
+│   ├── 📄 Procfile                  # Cloud web worker start configuration
 │   ├── 📄 .env                      # Environment config & API keys
 │   └── 📂 app/                      # Core backend codebase
 │       ├── 📄 main.py               # FastAPI entry point & router registrations
 │       ├── 📂 core/                 # Config & security settings
-│       └── 📂 features/             # Threat Intelligence Engines
+│       └── 📂 features/             # 13 Threat Intelligence Engines
 │           ├── 📂 anomaly_detector/ # Isolation Forest & Autoencoder models
 │           ├── 📂 baseline_engine/  # Entity profiling & baseline storage
 │           ├── 📂 cert_evaluator/   # CERT benchmark dataset evaluator & metrics
@@ -218,7 +247,7 @@ AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/
 
 ## ⚡ Local Quickstart Guide for Judges
 
-Follow these simple steps to run both the **Backend** and **Frontend** on your local machine for evaluation.
+Follow these simple steps to run both the **Backend** and **Web Frontend** on your local machine for evaluation.
 
 ### Prerequisites
 - **Python**: Version 3.10 or higher installed
@@ -254,7 +283,7 @@ uvicorn app.main:app --reload --port 8000
 
 ---
 
-### Step 2: Start the Next.js Frontend
+### Step 2: Start the Next.js Web Platform
 
 Open a **second terminal** and execute:
 
@@ -269,7 +298,7 @@ npm install
 npm run dev
 ```
 
-> 🟢 **Frontend UI Verification**: Open `http://localhost:3000` in your browser. The dashboard will load with full Light/Dark mode support and live API connectivity to your local backend.
+> 🟢 **Web UI Verification**: Open `http://localhost:3000` in your browser. The dashboard will load with full Light/Dark mode support and live API connectivity to your local backend.
 
 <br/>
 
