@@ -95,6 +95,9 @@ TrustMatrix changes the paradigm from:
 | 🕸️ **Graph Intelligence** | Maps entity relationships (users, devices, IPs) using network graphs (`networkx`) to detect lateral movement. |
 | 👥 **Peer Analysis** | Compares an individual's behavior against their peers or department to identify outliers more accurately. |
 | 👻 **Shadow Accounts** | Identifies unmanaged, orphaned, or unauthorized accounts that could be exploited by insiders. |
+| 🧠 **NLP Topic Engine** | Uses Latent Dirichlet Allocation (LDA) topic modeling to detect abnormal document content access patterns and sensitive data drift. |
+| 📊 **CERT Benchmark Evaluator** | Benchmarks anomaly models against Carnegie Mellon CERT insider threat datasets with Precision, Recall, and ROC-AUC metrics. |
+| 🛠️ **SOAR Automated Remediation** | Instant containment playbooks (Host Isolation, Account Lockout, Token Revocation, Force MFA, IP Blocking, File Quarantine) with audit logging. |
 | ⚡ **Real-time WebSockets** | Pushes critical alerts to the dashboard instantly via WebSockets for immediate response. |
 | 🎯 **Threat Simulator** | Built-in engine to safely simulate realistic insider threat scenarios for continuous testing and validation. |
 
@@ -315,6 +318,10 @@ Below are the core REST API endpoints hosted at `http://localhost:8000/api/v1`:
 | `/api/v1/baseline/{username}/recalculate` | `POST` | Baselines | Recalculate baseline with new event stream |
 | `/api/v1/anomaly/analyze` | `POST` | ML Engine | Run Isolation Forest & Autoencoder evaluation |
 | `/api/v1/copilot/explain` | `POST` | GenAI SOC | Generate threat summary & response playbooks |
+| `/api/v1/nlp/analyze-topics` | `POST` | NLP Engine | Perform LDA topic extraction & sensitive drift analysis |
+| `/api/v1/benchmark/evaluate` | `POST` | CERT Benchmark | Evaluate anomaly detection against CERT datasets |
+| `/api/v1/remediation/isolate-host` | `POST` | SOAR Playbooks | Trigger active host isolation & containment |
+| `/api/v1/remediation/lock-user` | `POST` | SOAR Playbooks | Lock out compromised account & revoke active tokens |
 | `/api/v1/risk/alerts` | `GET` | Risk Engine | Fetch prioritized risk alerts |
 
 <br/>
