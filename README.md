@@ -69,34 +69,34 @@ TrustMatrix changes the paradigm from:
 
 ---
 
-## 🎯 Key Features & Modules
+## 🎯 Key Features
 
-### 1. 🗂️ Universal Log Ingestor & Normalizer
-- Continuously ingests raw telemetry logs across Windows Event Logs (`EventID 4624`, `4625`), Linux SSH logs, Network VPN traces, and cloud API access.
-- Normalizes unstructured/semi-structured logs into standard JSON schema for real-time feature extraction.
+<br/>
 
-### 2. 🔬 Behavioral Baseline Engine
-- Maintains living entity profiles storing average daily bytes, max threshold bounds, typical active hours (24-hour heatmap), allowed locations, authorized devices, and frequent binaries.
-- Supports manual and automated profile recalculation based on incoming log streams.
+| Module | What It Does |
+|---|---|
+| 🗂️ **Log Ingestion** | Ingests simulated organizational logs for file access, logins, and transfers. |
+| 🔬 **Behavioral Baseline Modeling** | Establishes normal behavior patterns per user/entity to serve as a baseline. |
+| 📏 **Anomaly Detection Engine** | Uses machine learning and statistical models instead of purely rule-based triggers. |
+| 🛡️ **Risk Engine & Scoring** | Assigns composite risk scores for prioritized alert dashboards. |
+| 📉 **Low False-Positive Design** | Reduces alert fatigue by correlating multiple signals before flagging an event. |
 
-### 3. 📏 ML Ensemble Anomaly Detector
-- Evaluates behavior across high-dimensional feature vectors: login hours, failed login ratios, byte volume, admin command counts, and unique device footprints.
-- Runs **Isolation Forest** and **Autoencoder** anomaly detection models to calculate composite risk scores (0–100%).
+<br/>
 
-### 4. 🤖 AI SOC Copilot (GenAI Engine)
-- Context-aware threat analyst powered by LLMs.
-- Accepts anomaly scores, flagged indicators, and raw activity trace summaries to produce:
-  - **Executive Threat Summaries**
-  - **Suspected MITRE ATT&CK Tactics Map** (`T1078 Valid Accounts`, `T1048.002 Exfiltration`)
-  - **Actionable Incident Response Playbooks**
+---
 
-### 5. 👥 Peer Cohort Analysis & Shadow Accounts
-- Benchmarks individual activity against peer groups to eliminate organization-wide false alarms (e.g., DevOps running batch jobs at night).
-- Identifies unmanaged or orphaned "shadow accounts" susceptible to privilege escalation.
+## ✨ Extra Features Added
 
-### 6. ⚡ SOAR & CERT Benchmark Evaluator
-- Generates automated remediation steps (Active Directory account lockout, VPN session termination, endpoint isolation).
-- Benchmark evaluator built for CERT dataset compatibility.
+<br/>
+
+| Module | What It Does |
+|---|---|
+| 🤖 **SOC Co-pilot** | LLM-powered assistant (GenAI) to help analysts investigate alerts contextually. |
+| 🕸️ **Graph Intelligence** | Maps entity relationships (users, devices, IPs) using network graphs (`networkx`) to detect lateral movement. |
+| 👥 **Peer Analysis** | Compares an individual's behavior against their peers or department to identify outliers more accurately. |
+| 👻 **Shadow Accounts** | Identifies unmanaged, orphaned, or unauthorized accounts that could be exploited by insiders. |
+| ⚡ **Real-time WebSockets** | Pushes critical alerts to the dashboard instantly via WebSockets for immediate response. |
+| 🎯 **Threat Simulator** | Built-in engine to safely simulate realistic insider threat scenarios for continuous testing and validation. |
 
 <br/>
 
