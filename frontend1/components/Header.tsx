@@ -55,10 +55,6 @@ export default function Header({ title, subtitle }: HeaderProps) {
           />
         </div>
 
-        <button className="flex items-center gap-2 bg-[#86efac] hover:bg-[#86efac]/90 text-[#090d16] px-4 py-1.5 rounded-full font-bold transition-all glow-primary text-xs shadow-[0_0_15px_rgba(134,239,172,0.3)]">
-          <PlayCircle className="w-4 h-4" />
-          Run Simulation
-        </button>
       </div>
     </header>
   );
