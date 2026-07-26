@@ -1,19 +1,26 @@
 import Link from "next/link";
-import { Shield, Globe, Mail, MessageSquare } from "lucide-react";
+import { Globe, Mail, MessageSquare } from "lucide-react";
 
 export default function Footer() {
+  const asciiBanner = `████████╗██████╗ ██╗   ██╗███████╗████████╗███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
+╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
+   ██║   ██████╔╝██║   ██║███████╗   ██║   ██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝ 
+   ██║   ██╔══██╗██║   ██║╚════██║   ██║   ██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗ 
+   ██║   ██║  ██║╚██████╔╝███████║   ██║   ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
+   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝`;
+
   return (
-    <footer className="bg-transparent border-t border-white/5 pt-20 pb-10">
+    <footer className="bg-[#050810]/95 backdrop-blur-xl border-t border-white/10 pt-16 pb-10 relative z-20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6">
-              <Shield className="w-8 h-8 text-blue-500" />
-              <span className="text-2xl font-bold text-white tracking-tight">TrustMatrix</span>
-            </Link>
-            <p className="text-zinc-400 font-light max-w-sm mb-8 leading-relaxed">
-              The autonomous intelligence layer for Insider Threat Detection & UEBA AI SOC Platform. Stay one step ahead of anomalous behaviors.
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16 items-start">
+          {/* Left Side: ASCII Banner & Tagline */}
+          <div className="lg:col-span-2">
+            <pre className="text-[5px] sm:text-[7px] md:text-[9px] lg:text-[10px] xl:text-[11px] font-mono text-emerald-400 leading-tight select-none tracking-tighter whitespace-pre overflow-hidden mb-4 max-w-full">
+              {asciiBanner}
+            </pre>
+            <h3 className="text-xs md:text-sm text-zinc-300 italic font-light tracking-wide max-w-lg mb-6 leading-relaxed">
+              *The Autonomous Intelligence Layer for Insider Threat Detection &amp; UEBA AI SOC Platform*
+            </h3>
             <div className="flex items-center gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/15 transition-all">
                 <Globe className="w-5 h-5" />
@@ -27,13 +34,14 @@ export default function Footer() {
             </div>
           </div>
           
+          {/* Right Side: Product & Resources */}
           <div>
             <h4 className="text-white font-semibold mb-6">Product</h4>
             <ul className="space-y-4">
-              <li><Link href="#features" className="text-zinc-400 hover:text-blue-400 transition-colors">Features</Link></li>
-              <li><Link href="/dashboard" className="text-zinc-400 hover:text-blue-400 transition-colors">Dashboard</Link></li>
-              <li><a href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Integrations</a></li>
-              <li><a href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Pricing</a></li>
+              <li><Link href="#features" className="text-zinc-400 hover:text-emerald-400 transition-colors">Features</Link></li>
+              <li><Link href="/dashboard" className="text-zinc-400 hover:text-emerald-400 transition-colors">Dashboard</Link></li>
+              <li><a href="#" className="text-zinc-400 hover:text-emerald-400 transition-colors">Integrations</a></li>
+              <li><a href="#" className="text-zinc-400 hover:text-emerald-400 transition-colors">Pricing</a></li>
             </ul>
           </div>
           

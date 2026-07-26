@@ -133,18 +133,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #172554; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #86efac; }
-
-/* Glowing utilities */
-.glow-primary { box-shadow: 0 0 20px 0 rgba(134, 239, 172, 0.25); }
-.glow-cyan { box-shadow: 0 0 20px 0 rgba(56, 189, 248, 0.25); }
-.glow-purple { box-shadow: 0 0 20px 0 rgba(167, 139, 250, 0.25); }
-.glow-red { box-shadow: 0 0 20px 0 rgba(244, 63, 94, 0.25); }
-
 /* Glass panel with futuristic top neon line & micro-shadows */
 .glass-panel {
   background: var(--card);
@@ -184,5 +172,17 @@ body {
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+}
+
+/* Hide scrollbars globally */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
 }

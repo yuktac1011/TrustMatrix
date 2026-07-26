@@ -16,10 +16,16 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg tracking-tight mb-6 leading-tight">
-            Autonomous Threat Hunter <br className="hidden md:block"/> 
-            <span className="text-emerald-400 drop-shadow-md">For Insider Attacks</span>
-          </h1>
+          <div className="mb-8 flex justify-center overflow-hidden">
+            <pre className="text-[6px] xs:text-[9px] sm:text-xs md:text-sm lg:text-base font-mono text-emerald-400 leading-tight select-none tracking-tighter whitespace-pre drop-shadow-[0_0_25px_rgba(52,211,153,0.7)]">
+{`████████╗██████╗ ██╗   ██╗███████╗████████╗███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
+╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
+   ██║   ██████╔╝██║   ██║███████╗   ██║   ██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝ 
+   ██║   ██╔══██╗██║   ██║╚════██║   ██║   ██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗ 
+   ██║   ██║  ██║╚██████╔╝███████║   ██║   ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
+   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝`}
+            </pre>
+          </div>
           
           <p className="mt-4 text-xl md:text-2xl text-zinc-100 max-w-3xl mx-auto font-medium drop-shadow-lg leading-relaxed mb-10">
             Continuously profile entity behavior, detect anomalies in real-time, and automate remediation with our AI-driven Security Operations Center.

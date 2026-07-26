@@ -45,30 +45,38 @@ export default function FeaturesSection() {
 
   useGSAP(() => {
     // Header texts
-    gsap.from(".feature-header", {
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 80%",
+    gsap.fromTo(
+      ".feature-header",
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top bottom-=50px",
+        }
       }
-    });
+    );
 
     // Cards stagger
-    gsap.from(".feature-card", {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".feature-grid",
-        start: "top 85%",
+    gsap.fromTo(
+      ".feature-card",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top bottom-=50px",
+        }
       }
-    });
+    );
 
   }, { scope: container });
 
@@ -78,10 +86,10 @@ export default function FeaturesSection() {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="feature-header text-4xl md:text-5xl font-bold text-white mb-6 opacity-100">
+          <h2 className="feature-header text-4xl md:text-5xl font-bold text-white mb-6">
             Core Capabilities
           </h2>
-          <p className="feature-header text-xl text-zinc-400 max-w-2xl mx-auto font-light opacity-100">
+          <p className="feature-header text-xl text-zinc-300 max-w-2xl mx-auto font-light">
             A full suite of autonomous hunting tools designed to outsmart the most sophisticated insider threats.
           </p>
         </div>
@@ -90,16 +98,16 @@ export default function FeaturesSection() {
           {features.map((feature, i) => (
             <div 
               key={i}
-              className={`feature-card relative overflow-hidden rounded-3xl bg-black/40 backdrop-blur-xl border ${feature.borderColor} p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] transition-all hover:-translate-y-1.5 hover:bg-black/60 hover:border-white/20 opacity-100`}
+              className={`feature-card relative overflow-hidden rounded-3xl bg-[#0d1527] border ${feature.borderColor} p-8 shadow-[0_12px_40px_rgba(0,0,0,0.8)] transition-all hover:-translate-y-1.5 hover:bg-[#121b30] hover:border-white/30`}
             >
-              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${feature.color} rounded-full blur-3xl -translate-y-1/2 translate-x-1/3`}></div>
+              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${feature.color} rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none`}></div>
               
               <div className="relative z-10">
-                <div className="mb-6 p-4 inline-block bg-black/40 rounded-2xl border border-white/5 shadow-xl">
+                <div className="mb-6 p-4 inline-block bg-[#050810] rounded-2xl border border-white/10 shadow-xl">
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-zinc-400 leading-relaxed font-light">
+                <p className="text-zinc-300 leading-relaxed font-light">
                   {feature.desc}
                 </p>
               </div>

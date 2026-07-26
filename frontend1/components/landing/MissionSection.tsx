@@ -119,7 +119,7 @@ export default function MissionSection() {
               {points.map((point, i) => (
                 <div 
                   key={i}
-                  className="mission-point flex items-start gap-4 p-5 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] hover:border-emerald-500/30 transition-all opacity-100"
+                  className="mission-point flex items-start gap-4 p-5 rounded-2xl bg-[#0d1527] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.8)] hover:border-emerald-500/40 hover:bg-[#121b30] transition-all"
                 >
                   <div className="p-3 rounded-lg bg-black/50 border border-white/5">
                     {point.icon}
