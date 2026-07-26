@@ -11,23 +11,20 @@
    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 ```
 
-### *The Autonomous Intelligence Layer for Insider Threat Detection*
+### *The Autonomous Intelligence Layer for Insider Threat Detection & UEBA AI SOC Platform*
 
 <br/>
 
-[![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge&color=dea127)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.11-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Python](https://img.shields.io/badge/Python-3.11+-FFD43B?style=for-the-badge&logo=python&logoColor=black)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.10+-FFD43B?style=for-the-badge&logo=python&logoColor=black)](https://python.org)
+[![Tailwind CSS v4](https://img.shields.io/badge/TailwindCSS-v4.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge&color=dea127)](./LICENSE)
 
 <br/>
 
-> **TrustMatrix** is an AI-powered Threat Hunting Platform designed for Security Operations Centers (SOCs) and Security Analysts.
-> It treats insider threats not as static rule violations, but as dynamic behavioral anomalies.
-> The platform continuously profiles, baselines, and scores entity behavior to intercept threats like data exfiltration and lateral movement before the damage is done.
-
-<br/>
-
-[**→ Live Demo**](#) · [**→ Documentation**](./docs) · [**→ API Reference**](./docs/04_API) · [**→ Report an Issue**](#)
+> **TrustMatrix** is a Next-Gen User & Entity Behavior Analytics (UEBA) and Autonomous Threat Hunting Platform built for modern Security Operations Centers (SOCs). 
+> Instead of relying on static SIEM rules that flood analysts with false positives, TrustMatrix continuously profiles entity behavior using machine learning ensemble models (Isolation Forests, Autoencoders), Graph Intelligence, NLP topic extraction, and Generative AI SOC Copilot for instant threat explainability and SOAR remediation.
 
 <br/>
 
@@ -39,390 +36,286 @@
 
 ## 📌 Table of Contents
 
-- [What is TrustMatrix?](#-what-is-trustmatrix)
-- [Key Features (As per Problem Statement)](#-key-features-as-per-problem-statement)
-- [Extra Features Added](#-extra-features-added)
-- [Screenshots](#-screenshots)
-- [Architecture Overview](#️-architecture-overview)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Manual Setup](#manual-setup)
-- [Threat Intelligence Modules](#-threat-intelligence-modules)
-- [API Overview](#-api-overview)
-- [Database Schema](#️-database-schema)
-- [Roadmap](#️-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [🧠 Core Value Proposition](#-core-value-proposition)
+- [🎯 Key Features & Modules](#-key-features--modules)
+- [🎨 Next-Gen UI/UX Design System](#-next-gen-uiux-design-system)
+- [🏛️ System Architecture](#️-system-architecture)
+- [💻 Tech Stack](#-tech-stack)
+- [📁 Repository Structure](#-repository-structure)
+- [⚡ Local Quickstart Guide for Judges](#-local-quickstart-guide-for-judges)
+- [🎬 Judge Demonstration Walkthrough](#-judge-demonstration-walkthrough)
+- [📡 API Reference](#-api-reference)
+- [📄 License](#-license)
 
 <br/>
 
 ---
 
-## 🧠 What is TrustMatrix?
+## 🧠 Core Value Proposition
 
-Most SOC teams spend more time **chasing false positives and managing static rules** than actually hunting threats — yet insider threats rarely trigger simple thresholds.
+Traditional Security Information and Event Management (SIEM) tools fail against insider attacks because insiders operate using **valid credentials**. Simple threshold-based rules fail to distinguish between legitimate high-volume work and malicious data exfiltration.
 
-TrustMatrix changes this by asking a fundamentally different question:
+TrustMatrix changes the paradigm from:
+> ~~"Which static rule did this user violate?"~~  
+> **"How anomalous is this entity's current behavior compared to their historical baseline?"**
 
-> ~~"Which rule did this user break?"~~
-> **"How anomalous is this behavior compared to their baseline?"**
-
-Because insider threats are among the hardest to detect, the activity often resembles normal behavior right up until damage is done — an employee quietly accessing sensitive files before resignation, or data being moved out in small, disguised increments.
-
-Unlike static SIEMs or rule-based triggers, TrustMatrix:
-
-- 📦 **Ingests** simulated organizational logs (login activity, file access, data transfers) continuously.
-- 🔍 **Profiles & Baselines** every entity (user/device) to establish "normal" behavior patterns.
-- 📊 **Scores** risk dynamically by correlating multiple anomalous signals, significantly reducing false positives.
-- 🕸️ **Maps** lateral movement through advanced Graph Intelligence and Peer Analysis.
-- 💡 **Recommends** remediation steps via an integrated SOC Co-pilot (Generative AI).
-- 🕰️ **Simulates** realistic insider threats for continuous model validation and testing.
+### Why TrustMatrix Wins:
+1. **Dynamic Baselining**: Learns normal working hours, daily byte transfers, authorized devices, and allowed geographies per user/entity.
+2. **Multi-Model Anomaly Detection**: Combines **Isolation Forests**, **Autoencoder neural loss**, and statistical z-scores to evaluate telemetry.
+3. **Graph Intelligence & Peer Analysis**: Identifies lateral movement and compares anomaly scores against departmental cohorts to suppress noise.
+4. **GenAI SOC Copilot & SOAR Playbooks**: Automatically maps threats to **MITRE ATT&CK** techniques and generates actionable, step-by-step remediation playbooks.
 
 <br/>
 
 ---
 
-## 🎯 Key Features (As per Problem Statement)
+## 🎯 Key Features & Modules
 
-<br/>
+### 1. 🗂️ Universal Log Ingestor & Normalizer
+- Continuously ingests raw telemetry logs across Windows Event Logs (`EventID 4624`, `4625`), Linux SSH logs, Network VPN traces, and cloud API access.
+- Normalizes unstructured/semi-structured logs into standard JSON schema for real-time feature extraction.
 
-| Module | What It Does |
-|---|---|
-| 🗂️ **Log Ingestion** | Ingests simulated organizational logs for file access, logins, and transfers. |
-| 🔬 **Behavioral Baseline Modeling** | Establishes normal behavior patterns per user/entity to serve as a baseline. |
-| 📏 **Anomaly Detection Engine** | Uses machine learning and statistical models instead of purely rule-based triggers. |
-| 🛡️ **Risk Engine & Scoring** | Assigns composite risk scores for prioritized alert dashboards. |
-| 📉 **Low False-Positive Design** | Reduces alert fatigue by correlating multiple signals before flagging an event. |
+### 2. 🔬 Behavioral Baseline Engine
+- Maintains living entity profiles storing average daily bytes, max threshold bounds, typical active hours (24-hour heatmap), allowed locations, authorized devices, and frequent binaries.
+- Supports manual and automated profile recalculation based on incoming log streams.
+
+### 3. 📏 ML Ensemble Anomaly Detector
+- Evaluates behavior across high-dimensional feature vectors: login hours, failed login ratios, byte volume, admin command counts, and unique device footprints.
+- Runs **Isolation Forest** and **Autoencoder** anomaly detection models to calculate composite risk scores (0–100%).
+
+### 4. 🤖 AI SOC Copilot (GenAI Engine)
+- Context-aware threat analyst powered by LLMs.
+- Accepts anomaly scores, flagged indicators, and raw activity trace summaries to produce:
+  - **Executive Threat Summaries**
+  - **Suspected MITRE ATT&CK Tactics Map** (`T1078 Valid Accounts`, `T1048.002 Exfiltration`)
+  - **Actionable Incident Response Playbooks**
+
+### 5. 👥 Peer Cohort Analysis & Shadow Accounts
+- Benchmarks individual activity against peer groups to eliminate organization-wide false alarms (e.g., DevOps running batch jobs at night).
+- Identifies unmanaged or orphaned "shadow accounts" susceptible to privilege escalation.
+
+### 6. ⚡ SOAR & CERT Benchmark Evaluator
+- Generates automated remediation steps (Active Directory account lockout, VPN session termination, endpoint isolation).
+- Benchmark evaluator built for CERT dataset compatibility.
 
 <br/>
 
 ---
 
-## ✨ Extra Features Added
+## 🎨 Next-Gen UI/UX Design System
 
-<br/>
+The frontend (`frontend1`) was built from scratch with a premium aesthetic inspired by **Linear, Vercel, Apple VisionOS, and Arc Browser**:
 
-| Module | What It Does |
-|---|---|
-| 🤖 **SOC Co-pilot** | LLM-powered assistant (GenAI) to help analysts investigate alerts contextually. |
-| 🕸️ **Graph Intelligence** | Maps entity relationships (users, devices, IPs) using network graphs (`networkx`) to detect lateral movement. |
-| 👥 **Peer Analysis** | Compares an individual's behavior against their peers or department to identify outliers more accurately. |
-| 👻 **Shadow Accounts** | Identifies unmanaged, orphaned, or unauthorized accounts that could be exploited by insiders. |
-| ⚡ **Real-time WebSockets** | Pushes critical alerts to the dashboard instantly via WebSockets for immediate response. |
-| 🎯 **Threat Simulator** | Built-in engine to safely simulate realistic insider threat scenarios for continuous testing and validation. |
+- **Color Palette**: Deep Black × Electric Violet (`#000000` / `#7c3aed` / `#09090b`).
+- **Glassmorphism**: Translucent `.glass-panel` cards with backdrop blurs, subtle borders, and dynamic bottom-glow radiating light effects.
+- **Typography**: Complete typography styling using **IBM Plex Serif** imported globally via `@import`.
+- **Adaptive Light & Dark Mode**: Sun/Moon theme toggle in the header with high-contrast, beautiful themes for both dark and bright environments.
 
 <br/>
 
 ---
 
-## 📸 Screenshots
-
-<br/>
-
-> **SOC Dashboard** — Live intelligence summaries across the organization
+## 🏛️ System Architecture
 
 ```text
-┌──────┬───────────────────────────────────────────────────┐
-│      │ ● Risk Score  ● Anomalies  ● Entities  ● Alerts  │
-│  📊  ├───────────────────────────────────────────────────┤
-│      │                                                   │
-│ NAV  │  [HIGH RISK]  [14 Active]  [1,204 Monitored]      │
-│      │                                                   │
-│  🗂  │  ┌──────────────┐  ┌──────────────────────────┐  │
-│      │  │ Risk Radar   │  │  Top Critical Alerts       │  │
-│  📈  │  │   ██████     │  │  🔴 Exfiltration Detected  │  │
-│      │  │  ████████    │  │  ⚠️ Unusual Login (VPN)    │  │
-│  💡  │  │   ██████     │  │  ✅ Account Locked Out     │  │
-│      │  └──────────────┘  └──────────────────────────┘  │
-└──────┴───────────────────────────────────────────────────┘
-```
-
-> **SOC Co-pilot (GenAI)** — Contextual investigation assistance
-
-```text
-┌────────────────────────────────────────────────────────────────┐
-│  Agent: How can I assist with Alert #492 (Data Exfiltration)?  │
-│                                                                │
-│  User: Summarize the user's activity prior to the alert.       │
-│                                                                │
-│  Agent: In the past 48 hours, user JDOE accessed 42 sensitive  │
-│         documents (300% above baseline). This occurred off-    │
-│         hours, followed by an encrypted zip creation.          │
-│                                                                │
-│  [ Generate Incident Report ]    [ Isolate Host ]              │
-└────────────────────────────────────────────────────────────────┘
+                               ┌─────────────────────────────────────────┐
+                               │           TrustMatrix Platform          │
+                               └─────────────────────────────────────────┘
+                                                    │
+                 ┌──────────────────────────────────┴──────────────────────────────────┐
+                 │                                                                     │
+    ┌────────────▼─────────────┐                             ┌─────────────────────────▼──────────┐
+    │   Next.js 16 Frontend    │                             │      FastAPI Backend (Python 3.10+) │
+    │   (App Router, React 19) │                             │      http://localhost:8000/api/v1  │
+    │                          │                             │                                    │
+    │  ┌────────────────────┐  │   REST API Requests (api.ts)│  ┌──────────────────────────────┐  │
+    │  │ Overview Dashboard │  ├────────────────────────────┼─►│ Log Ingestion & Normalizer   │  │
+    │  │ Ingestion Terminal │  │                             │  ├──────────────────────────────┤  │
+    │  │ Baseline Engine    │  │                             │  │ Baseline Engine              │  │
+    │  │ ML Simulator       │  │                             │  ├──────────────────────────────┤  │
+    │  │ GenAI SOC Copilot  │  │◄────────────────────────────┼──┤ ML Ensemble (Isolation       │  │
+    │  └────────────────────┘  │   JSON Telemetry & Reports  │  │ Forest & Autoencoders)       │  │
+    │  ┌────────────────────┐  │                             │  ├──────────────────────────────┤  │
+    │  │ IBM Plex Serif     │  │                             │  │ GenAI SOC Copilot & SOAR     │  │
+    │  │ Light/Dark Glass   │  │                             │  ├──────────────────────────────┤  │
+    │  └────────────────────┘  │                             │  │ Peer Analysis & Shadow Accts │  │
+    └──────────────────────────┘                             │  └──────────────────────────────┘  │
+                                                             └────────────────────────────────────┘
 ```
 
 <br/>
 
 ---
 
-## 🏛️ Architecture Overview
+## 💻 Tech Stack
 
-```text
-                         ┌─────────────────────────────────────┐
-                         │         TrustMatrix Platform        │
-                         └─────────────────────────────────────┘
-                                           │
-              ┌────────────────────────────┼────────────────────────────┐
-              │                            │                            │
-    ┌─────────▼──────────┐   ┌────────────▼────────────┐   ┌──────────▼──────────┐
-    │   Frontend UI      │   │   FastAPI Backend       │   │   Data Storage      │
-    │   (Planned)        │   │   (Python 3.10+)        │   │   (Entity/Logs)     │
-    │                    │   │                         │   │                     │
-    │  ┌──────────────┐  │   │  ┌────────────────────┐ │   │   Entity Profiles   │
-    │  │ SOC Dashboard│  │   │  │ REST / WebSocket   │ │   │   Alerts            │
-    │  │ Alert Center │◄─┼───┼─►│ /api/v1/...        │ │   │   Anomalies         │
-    │  │ Entity Graph │  │   │  └────────────────────┘ │   │   Logs              │
-    │  │ GenAI Copilot│  │   │           │             │   └─────────────────────┘
-    │  └──────────────┘  │   │  ┌────────▼───────────┐ │
-    │                    │   │  │ Threat Engines     │ │   ┌─────────────────────┐
-    │  ┌──────────────┐  │   │  │                    │ │   │   Redis 7           │
-    │  │ Zustand      │  │   │  │  • Baseline Engine │◄┼──►│   (Task Queue)      │
-    │  │ TanStack     │  │   │  │  • Anomaly Detect  │ │   │   Celery Workers    │
-    │  │ Query        │  │   │  │  • Graph Intel     │ │   └─────────────────────┘
-    │  └──────────────┘  │   │  │  • Peer Analysis   │ │
-    └────────────────────┘   │  │  • Risk Engine     │ │
-                             │  └────────────────────┘ │
-                             │           │             │
-                             │  ┌────────▼───────────┐ │
-                             │  │ scikit-learn / xgb │ │
-                             │  │ networkx / GenAI   │ │
-                             │  └────────────────────┘ │
-                             └─────────────────────────┘
-```
+### Frontend (`frontend1`)
+- **Framework**: Next.js 16 (React 19)
+- **Styling**: Vanilla CSS + Tailwind CSS v4
+- **Typography**: IBM Plex Serif
+- **Icons**: Lucide React
+- **Charts & Visuals**: Chart.js / React-ChartJS-2 / Framer Motion
+- **API Integration**: Custom central `api.ts` module with native `fetch`
+
+### Backend (`backend`)
+- **Framework**: FastAPI (Python 3.10+)
+- **Server**: Uvicorn ASGI Server
+- **ML & Data Science**: `scikit-learn` (Isolation Forest), `numpy`, `pandas`
+- **Graph Intelligence**: `NetworkX`
+- **GenAI Copilot**: OpenAI / Google Generative AI integration
 
 <br/>
 
 ---
 
-## 🛠 Tech Stack
-
-### Backend (Implemented)
-
-| Technology | Version | Purpose |
-|---|---|---|
-| **FastAPI** | ≥ 0.110 | ASGI REST API framework |
-| **Uvicorn** | ≥ 0.28 | ASGI web server |
-| **Pydantic v2** | ≥ 2.6 | Data validation & schemas |
-| **SQLAlchemy** | ≥ 2.0 | ORM & database abstraction |
-| **Celery** | ≥ 5.3 | Async background task queue |
-| **pandas / NumPy** | latest | Data processing & aggregation |
-| **scikit-learn / XGBoost** | latest | Machine learning for anomaly detection |
-| **NetworkX** | ≥ 3.2 | Graph intelligence for lateral movement |
-| **OpenAI / GenAI** | latest | SOC Copilot intelligence layer |
-
-### Infrastructure
-
-| Technology | Purpose |
-|---|---|
-| **Redis 7** | Caching, Rate limiting, Celery broker |
-
-<br/>
-
----
-
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```text
 AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/
-├── 📂 backend/                    # FastAPI Python Application
-│   ├── 📄 requirements.txt        # Python dependencies
-│   ├── 📄 .env                    # Environment variables
-│   └── 📂 app/                    # Application source
-│       ├── 📄 main.py             # FastAPI entry point
-│       ├── 📂 core/               # Config, security, middleware
-│       ├── 📂 features/           # Threat Intelligence Engines
-│       │   ├── 📂 anomaly_detector/ # ML isolation forests, autoencoders
-│       │   ├── 📂 baseline_engine/  # Entity profiling
-│       │   ├── 📂 graph_intelligence/ # NetworkX relationship mapping
-│       │   ├── 📂 log_ingestor/     # High-speed data ingestion pipeline
-│       │   ├── 📂 peer_analysis/    # Cohort-based anomaly detection
-│       │   ├── 📂 risk_engine/      # Composite risk scoring
-│       │   ├── 📂 shadow_accounts/  # Unmanaged account detection
-│       │   ├── 📂 soc_copilot/      # GenAI chat interfaces
-│       │   ├── 📂 threat_simulator/ # Attack vector generation
-│       │   └── 📂 websocket_alerts/ # Real-time frontend sync
-├── 📄 .gitignore                  # Git ignore rules
-└── 📄 README.md                   # Project documentation
+├── 📂 frontend1/                     # Next.js 16 Futuristic UI
+│   ├── 📂 app/                      # App router (globals.css, layout.tsx, page.tsx)
+│   ├── 📂 components/               # UI layout components
+│   │   ├── Header.tsx               # Top navigation with Sun/Moon theme toggle
+│   │   ├── Sidebar.tsx              # Active tab navigation bar
+│   │   └── 📂 views/                # Feature views
+│   │       ├── OverviewTab.tsx      # Executive threat overview & metrics
+│   │       ├── IngestorTab.tsx      # Log ingestion console & pipeline output
+│   │       ├── BaselinesTab.tsx     # Entity baseline search & 24h heatmap
+│   │       ├── MLSimulatorTab.tsx   # Interactive parameter sliders & ML gauge
+│   │       └── CopilotTab.tsx       # GenAI SOC Copilot & remediation playbook
+│   ├── 📂 lib/                      # Central API service
+│   │   └── api.ts                   # Backend API connection functions
+│   └── 📄 package.json              # Next.js dependencies
+├── 📂 backend/                      # FastAPI Python Application
+│   ├── 📄 requirements.txt          # Python dependencies
+│   ├── 📄 .env                      # Environment config & API keys
+│   └── 📂 app/                      # Core backend codebase
+│       ├── 📄 main.py               # FastAPI entry point & router registrations
+│       ├── 📂 core/                 # Config & security settings
+│       └── 📂 features/             # Threat Intelligence Engines
+│           ├── 📂 anomaly_detector/ # Isolation Forest & Autoencoder models
+│           ├── 📂 baseline_engine/  # Entity profiling & baseline storage
+│           ├── 📂 log_ingestor/     # High-speed data ingest pipeline
+│           ├── 📂 soc_copilot/      # GenAI explanation engine
+│           ├── 📂 risk_engine/      # Composite risk scoring
+│           ├── 📂 peer_analysis/    # Peer cohort outlier detection
+│           ├── 📂 shadow_accounts/  # Orphaned account discovery
+│           └── 📂 soar_remediation/ # Response playbooks
+└── 📄 README.md                     # Hackathon project documentation
 ```
 
 <br/>
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Local Quickstart Guide for Judges
+
+Follow these simple steps to run both the **Backend** and **Frontend** on your local machine for evaluation.
 
 ### Prerequisites
-
-Make sure the following tools are installed on your machine:
-
-| Tool | Minimum Version | Install |
-|---|---|---|
-| **Python** | 3.10+ | [python.org](https://python.org) |
+- **Python**: Version 3.10 or higher installed
+- **Node.js**: Version 18.0 or higher installed
 
 ---
 
-### Manual Setup
+### Step 1: Start the FastAPI Backend
 
-#### Backend
+Open a terminal and execute:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-org/AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS.git
-cd AUTONOMOUS-THREAT-HUNTER-FOR-INSIDER-ATTACKS/backend
+# 1. Navigate to the backend directory
+cd backend
 
 # 2. Create and activate a virtual environment
+# Windows (PowerShell):
 python -m venv venv
+.\venv\Scripts\activate
 
-# Windows
-venv\Scripts\activate
-# macOS / Linux
-source venv/bin/activate
+# Linux / macOS:
+# python3 -m venv venv
+# source venv/bin/activate
 
-# 3. Install Python dependencies
+# 3. Install backend dependencies
 pip install -r requirements.txt
 
-# 4. Set environment variables
-cp .env.example .env
-# Edit .env with your OpenAI API keys, Redis, and DB URIs
-
-# 5. Start the FastAPI dev server
+# 4. Start the backend server
 uvicorn app.main:app --reload --port 8000
 ```
 
-The API documentation will be available at `http://localhost:8000/docs`.
-
-<br/>
+> 🟢 **Backend API Verification**: Open `http://localhost:8000/health` or `http://localhost:8000/docs` in your browser to verify that the Swagger UI & API endpoints are active.
 
 ---
 
-## 🔬 Threat Intelligence Modules
+### Step 2: Start the Next.js Frontend
 
-### 1. Baseline Engine & Anomaly Detector
-- Ingests raw logs continuously and builds a behavioral profile per user.
-- Utilizes statistical models (Isolation Forests, XGBoost) instead of static thresholds to spot true anomalies.
-
-### 2. Graph Intelligence & Peer Analysis
-- Constructs a directed graph of User -> Device -> Asset using `networkx`.
-- Detects lateral movement and compares user activity metrics against their departmental peers.
-
-### 3. Risk Engine & Scoring
-- Consolidates disparate anomaly signals (login anomaly + file access anomaly).
-- Applies a composite Risk Score to minimize alert fatigue and false positives.
-
-### 4. SOC Co-pilot
-- Leverages Google Generative AI / OpenAI to read alerts and provide conversational triage.
-- Analysts can ask questions like "Is this IP associated with known threat actors?" directly in the dashboard.
-
-<br/>
-
----
-
-## 📡 API Overview
-
-The REST API is organized by threat intelligence features:
-
-```text
-Ingestion & Simulation
-  POST   /api/v1/logs/ingest          Stream log data
-  POST   /api/v1/threats/simulate     Run attack scenario
-
-Intelligence
-  GET    /api/v1/entities/:id/profile Fetch behavior baseline
-  GET    /api/v1/graph/relationships  Get network graph data
-  GET    /api/v1/risk/alerts          Fetch prioritized alerts
-
-SOC Copilot
-  POST   /api/v1/copilot/chat         Query the GenAI assistant
-```
-
-<br/>
-
----
-
-## 🗃️ Database Schema (Conceptual)
-
-```sql
--- Tracked Entities
-entities (
-  entity_id      UUID PRIMARY KEY,
-  type           VARCHAR(50), -- 'user', 'device', 'ip'
-  department     VARCHAR(100),
-  risk_score     FLOAT DEFAULT 0.0
-)
-
--- Raw Log Storage
-logs (
-  log_id         UUID PRIMARY KEY,
-  entity_id      UUID REFERENCES entities(entity_id),
-  action         VARCHAR(100),
-  timestamp      TIMESTAMPTZ,
-  metadata       JSONB
-)
-
--- Detected Anomalies
-anomalies (
-  anomaly_id     UUID PRIMARY KEY,
-  entity_id      UUID REFERENCES entities(entity_id),
-  score          FLOAT,
-  description    TEXT,
-  detected_at    TIMESTAMPTZ
-)
-
--- Consolidated Alerts
-alerts (
-  alert_id       UUID PRIMARY KEY,
-  entity_id      UUID REFERENCES entities(entity_id),
-  severity       VARCHAR(20), -- 'critical', 'high', 'low'
-  status         VARCHAR(20), -- 'open', 'investigating', 'closed'
-  created_at     TIMESTAMPTZ
-)
-```
-
-<br/>
-
----
-
-## 🗺️ Roadmap
-
-### ✅ MVP (Backend Layer) — Complete
-- [x] Log Ingestor & Simulation pipelines
-- [x] Behavioral Baseline Engine
-- [x] ML-based Anomaly Detection
-- [x] Graph Intelligence mappings
-- [x] Peer Analysis integration
-- [x] SOC Co-pilot endpoints
-- [x] WebSocket infrastructure for real-time alerts
-
-### 🔄 Phase 2 — Frontend Integration (In Progress)
-- [ ] Next.js 14 Dashboard scaffolding
-- [ ] Real-time D3.js / Vis.js graph rendering
-- [ ] Auth & RBAC (Role-Based Access Control)
-- [ ] SOC Copilot Chat UI
-
-### 🔭 Phase 3 — Advanced Capabilities (Planned)
-- [ ] Automated isolation/remediation playbooks
-- [ ] Deep Learning auto-encoders for complex feature extraction
-- [ ] Multi-tenant support
-
-<br/>
-
----
-
-## 🤝 Contributing
-
-Contributions are warmly welcome!
+Open a **second terminal** and execute:
 
 ```bash
-# 1. Fork the repository
-# 2. Clone your fork
-# 3. Create a feature branch: git checkout -b feature/awesome-addition
-# 4. Commit your changes: git commit -m "feat: adding new ML model"
-# 5. Push and open a Pull Request
+# 1. Navigate to the frontend directory
+cd frontend1
+
+# 2. Install Node dependencies
+npm install
+
+# 3. Start the Next.js development server
+npm run dev
 ```
+
+> 🟢 **Frontend UI Verification**: Open `http://localhost:3000` in your browser. The dashboard will load with full Light/Dark mode support and live API connectivity to your local backend.
+
+<br/>
+
+---
+
+## 🎬 Judge Demonstration Walkthrough
+
+To experience the full capabilities of **TrustMatrix** during evaluation, follow this 4-step testing walkthrough:
+
+### Step 1: Inspect Entity Baselines (`Baselines Tab`)
+1. Click on **Baselines** in the sidebar.
+2. In the search bar, type `admin_user` and click **Retrieve Profile** (or press Enter).
+3. **What to observe**: The frontend makes a live call to `GET /api/v1/baseline/admin_user`. The user's baseline card renders their **Average Daily Bytes**, **Max Daily Threshold**, and an interactive 24-hour **Typical Working Hours** heatmap.
+4. Click **Recalculate Baseline** to test live profile recalculation.
+
+### Step 2: Transmit Live Telemetry (`Log Ingestor Tab`)
+1. Click on **Log Ingestor** in the sidebar.
+2. Select a template (e.g., *Windows: Successful Login*) or enter custom telemetry in the JSON editor.
+3. Click **Transmit Log Batch to Pipeline**.
+4. **What to observe**: The log ingestion terminal streams progress outputs directly to the output log window via `POST /api/v1/ingest/`.
+
+### Step 3: Run the ML Ensemble Simulator (`ML Simulator Tab`)
+1. Click on **ML Simulator** in the sidebar.
+2. Adjust the sliders to simulate suspicious behavior:
+   - **Login Hour**: `3` (3:00 AM)
+   - **Failed Login Ratio (%)**: `45%`
+   - **Bytes Transferred (KB)**: `85,000 KB`
+   - **Admin Commands**: `8`
+3. Click **Execute ML Ensemble Evaluation**.
+4. **What to observe**: The frontend posts features to `POST /api/v1/anomaly/analyze`. The ring gauge animates, the status switches to **ANOMALY DETECTED**, and the **Isolation Forest Score** and **Autoencoder Loss** calculate in real time.
+
+### Step 4: Trigger the GenAI SOC Copilot & SOAR Playbook (`AI SOC Copilot Tab`)
+1. Click on **AI SOC Copilot** in the sidebar.
+2. Review the pre-populated investigation context (Target User: `admin_user`, Risk Score: `84`, Indicators: `Late hour activity, Massive data transfer`).
+3. Click **Ask AI SOC Copilot to Explain**.
+4. **What to observe**: The GenAI engine processes the request via `POST /api/v1/copilot/explain`. It generates an **Executive Summary**, maps suspected tactics to **MITRE ATT&CK** (`T1078`, `T1048.002`), and renders an **Actionable Incident Response Playbook** with numbered remediation steps.
+
+<br/>
+
+---
+
+## 📡 API Reference
+
+Below are the core REST API endpoints hosted at `http://localhost:8000/api/v1`:
+
+| Endpoint | Method | Feature | Description |
+|---|---|---|---|
+| `/health` | `GET` | System | Health check & list of active feature engines |
+| `/api/v1/ingest/` | `POST` | Ingestion | Ingest raw telemetry log payloads |
+| `/api/v1/baseline/{username}` | `GET` | Baselines | Fetch historical behavior profile & metrics |
+| `/api/v1/baseline/{username}/recalculate` | `POST` | Baselines | Recalculate baseline with new event stream |
+| `/api/v1/anomaly/analyze` | `POST` | ML Engine | Run Isolation Forest & Autoencoder evaluation |
+| `/api/v1/copilot/explain` | `POST` | GenAI SOC | Generate threat summary & response playbooks |
+| `/api/v1/risk/alerts` | `GET` | Risk Engine | Fetch prioritized risk alerts |
 
 <br/>
 
@@ -430,14 +323,7 @@ Contributions are warmly welcome!
 
 ## 📄 License
 
-```text
-MIT License
-
-Copyright (c) 2026 TrustMatrix Engineering Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy...
-(See LICENSE file for full text).
-```
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for details.
 
 <br/>
 
@@ -445,16 +331,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 
 <div align="center">
 
-**Built for Modern Security Teams**
-
-*Hunting threats autonomously, so you don't have to.*
-
-<br/>
-
-
-
-*"Is this behavior normal?"*
+**Built for Modern Security Operations Centers**  
+*Autonomous Threat Hunting Powered by Machine Learning & Generative AI.*
 
 </div>
-
----
